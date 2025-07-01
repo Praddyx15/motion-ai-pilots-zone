@@ -18,7 +18,7 @@ const ScrollAnimations = () => {
 
     // Observe all elements with scroll animation classes
     const animatedElements = document.querySelectorAll(
-      '.scroll-fade-in, .scroll-slide-left, .scroll-zoom-in'
+      '.scroll-animate, .scroll-slide-left, .scroll-slide-right, .scroll-scale'
     );
 
     animatedElements.forEach((el) => observer.observe(el));
