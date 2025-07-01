@@ -1,4 +1,3 @@
-
 import React, { useEffect, useState } from 'react';
 import { Cpu, Eye, Zap, Layers, Activity, Database } from 'lucide-react';
 
@@ -114,7 +113,7 @@ const SimulatorShowcase = () => {
                   {/* Central Cockpit */}
                   <div className="absolute inset-16 glass-hud rounded-full flex items-center justify-center animate-float-3d">
                     <div className="w-24 h-24 bg-gradient-to-br from-teal-primary to-electric-blue rounded-lg flex items-center justify-center">
-                      <simulatorSystems[activeSystem].icon className="w-12 h-12 text-white" />
+                      {React.createElement(simulatorSystems[activeSystem].icon, { className: "w-12 h-12 text-white" })}
                     </div>
                   </div>
 
@@ -131,7 +130,7 @@ const SimulatorShowcase = () => {
                         transform: `translate(-50%, -50%) rotate(${index * 120}deg) translateY(-120px) rotate(${-index * 120}deg)`,
                       }}
                     >
-                      <system.icon className={`w-6 h-6 text-${system.color}`} />
+                      {React.createElement(system.icon, { className: `w-6 h-6 text-${system.color}` })}
                     </div>
                   ))}
                 </div>
@@ -176,7 +175,7 @@ const SimulatorShowcase = () => {
               >
                 <div className="flex items-start space-x-4">
                   <div className={`w-12 h-12 bg-gradient-to-br from-${system.color} to-slate-700 rounded-lg flex items-center justify-center`}>
-                    <system.icon className="w-6 h-6 text-white" />
+                    {React.createElement(system.icon, { className: "w-6 h-6 text-white" })}
                   </div>
                   <div className="flex-1">
                     <h3 className="heading-sm mb-2">{system.title}</h3>
@@ -206,7 +205,7 @@ const SimulatorShowcase = () => {
                 style={{ animationDelay: `${index * 0.2}s` }}
               >
                 <div className="w-16 h-16 glass-hud rounded-full flex items-center justify-center mx-auto mb-4 group-hover:animate-neural-pulse">
-                  <metric.icon className="w-8 h-8 text-teal-primary" />
+                  {React.createElement(metric.icon, { className: "w-8 h-8 text-teal-primary" })}
                 </div>
                 <div className="text-4xl font-bold text-white mb-2 font-mono">
                   {metricsActive ? metric.value : '---'}
