@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { LayoutDashboard, RotateIcon, Users } from 'lucide-react';
+import { LayoutDashboard, Rotate3DIcon, Users } from 'lucide-react';
 
 const ProductsSection = () => {
   const products = [
@@ -17,7 +17,7 @@ const ProductsSection = () => {
       title: "FMS Trainer Systems",
       description: "iPad and web-based flight management system training",
       features: ["Airbus MCDU Simulation", "Cloud-Based", "Mobile Compatible", "Real-Time Updates"],
-      icon: RotateIcon,
+      icon: Rotate3DIcon,
       gradient: "from-cyan-500 to-teal-500"
     },
     {
