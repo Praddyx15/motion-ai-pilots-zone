@@ -1,11 +1,12 @@
 
 import React, { useEffect } from 'react';
-import Navigation from '../components/Navigation';
-import CinematicHero from '../components/CinematicHero';
+import SideNavigation from '../components/SideNavigation';
+import HeroSection from '../components/HeroSection';
 import SimulatorShowcase from '../components/SimulatorShowcase';
 import AITechSection from '../components/AITechSection';
+import PlatformSection from '../components/PlatformSection';
+import AboutSection from '../components/AboutSection';
 import ContactSection from '../components/ContactSection';
-import Footer from '../components/Footer';
 import ScrollAnimations from '../components/ScrollAnimations';
 
 const Index = () => {
@@ -85,12 +86,15 @@ const Index = () => {
 
   return (
     <div className="min-h-screen bg-slate-900 text-white">
-      <Navigation />
-      <CinematicHero />
-      <SimulatorShowcase />
-      <AITechSection />
-      <ContactSection />
-      <Footer />
+      <SideNavigation />
+      <div className="ml-20"> {/* Offset for side navigation */}
+        <HeroSection />
+        <SimulatorShowcase />
+        <AITechSection />
+        <PlatformSection />
+        <AboutSection />
+        <ContactSection />
+      </div>
       <ScrollAnimations />
     </div>
   );

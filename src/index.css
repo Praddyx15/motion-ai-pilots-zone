@@ -1,4 +1,3 @@
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -28,7 +27,7 @@
     --ring: 222.2 84% 4.9%;
     --radius: 0.5rem;
 
-    /* Aviation Color Palette */
+    /* Aviation Color Palette - Enhanced */
     --jet-black: 0 0% 8%;
     --afterburner-orange: 16 100% 50%;
     --radar-green: 120 100% 50%;
@@ -44,12 +43,12 @@
   
   body {
     @apply bg-slate-900 text-white overflow-x-hidden;
-    font-family: 'Exo 2', system-ui, -apple-system, sans-serif;
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
     line-height: 1.6;
     background: radial-gradient(ellipse at top, rgba(46, 152, 150, 0.1) 0%, rgba(0, 68, 67, 0.05) 50%, rgba(15, 23, 42, 1) 100%);
   }
 
-  /* Aviation Typography */
+  /* Aviation Typography - Enhanced */
   .heading-display {
     @apply text-6xl md:text-8xl font-black text-white leading-none tracking-tight;
     font-family: 'Orbitron', monospace;
@@ -78,17 +77,17 @@
 
   .body-lg {
     @apply text-lg md:text-xl text-slate-300 leading-relaxed;
-    font-family: 'Exo 2', sans-serif;
+    font-family: 'Inter', sans-serif;
   }
 
   .body-md {
     @apply text-base md:text-lg text-slate-400 leading-relaxed;
-    font-family: 'Exo 2', sans-serif;
+    font-family: 'Inter', sans-serif;
   }
 
   .body-sm {
     @apply text-sm md:text-base text-slate-500;
-    font-family: 'Exo 2', sans-serif;
+    font-family: 'Inter', sans-serif;
   }
 
   .tech-mono {
@@ -96,7 +95,7 @@
     @apply text-sm font-medium text-cyan-400;
   }
 
-  /* Glassmorphism with Aviation Theme */
+  /* Glassmorphism with Aviation Theme - Enhanced */
   .glass-cockpit {
     background: rgba(15, 23, 42, 0.8);
     backdrop-filter: blur(20px);
@@ -118,7 +117,7 @@
       inset 0 1px 0 rgba(0, 200, 255, 0.1);
   }
 
-  /* Aviation Buttons */
+  /* Aviation Buttons - Enhanced */
   .btn-cockpit {
     background: linear-gradient(135deg, #2e9896, #004443);
     @apply text-white font-bold px-8 py-4 rounded-lg transition-all duration-300 tracking-wider;
@@ -155,7 +154,7 @@
     box-shadow: 0 0 20px rgba(0, 200, 255, 0.4);
   }
 
-  /* Animation Keyframes */
+  /* Enhanced Animation Keyframes */
   @keyframes cockpitBootup {
     0% {
       opacity: 0;
@@ -208,15 +207,6 @@
     }
   }
 
-  @keyframes turbineRotate {
-    0% {
-      transform: rotate(0deg) scale(1);
-    }
-    100% {
-      transform: rotate(360deg) scale(1.05);
-    }
-  }
-
   @keyframes neuralPulse {
     0%, 100% {
       opacity: 0.6;
@@ -259,10 +249,6 @@
     animation: float3D 6s ease-in-out infinite;
   }
 
-  .animate-turbine {
-    animation: turbineRotate 3s linear infinite;
-  }
-
   .animate-neural-pulse {
     animation: neuralPulse 2s ease-in-out infinite;
   }
@@ -271,7 +257,7 @@
     animation: dataFlow 3s ease-in-out infinite;
   }
 
-  /* Scroll-triggered animations */
+  /* Enhanced Scroll-triggered animations */
   .scroll-trigger {
     opacity: 0;
     transform: translateY(60px) rotateX(15deg);
@@ -316,24 +302,6 @@
     transform: scale(1) rotateX(0deg) rotateY(0deg);
   }
 
-  /* Cinematic Effects */
-  .parallax-bg {
-    transform-style: preserve-3d;
-    will-change: transform;
-  }
-
-  .depth-layer-1 {
-    transform: translateZ(0px);
-  }
-
-  .depth-layer-2 {
-    transform: translateZ(-50px);
-  }
-
-  .depth-layer-3 {
-    transform: translateZ(-100px);
-  }
-
   /* HUD Grid Overlay */
   .hud-grid {
     background-image: 
@@ -343,7 +311,7 @@
   }
 
   /* Aviation Accent Colors */
-  .text-afterburner {
+  .text-afterburner-orange {
     color: #ff4500;
   }
 
@@ -383,5 +351,10 @@
     box-shadow: 
       0 20px 60px rgba(0, 0, 0, 0.3),
       0 0 40px rgba(46, 152, 150, 0.2);
+  }
+
+  /* Radial gradient utility */
+  .bg-gradient-radial {
+    background: radial-gradient(circle, var(--tw-gradient-stops));
   }
 }
