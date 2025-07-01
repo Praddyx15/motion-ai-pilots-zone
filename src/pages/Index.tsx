@@ -1,8 +1,8 @@
 
 import React, { useEffect } from 'react';
 import Navigation from '../components/Navigation';
-import HeroSection from '../components/HeroSection';
-import ProductsSection from '../components/ProductsSection';
+import CinematicHero from '../components/CinematicHero';
+import SimulatorShowcase from '../components/SimulatorShowcase';
 import AITechSection from '../components/AITechSection';
 import ContactSection from '../components/ContactSection';
 import Footer from '../components/Footer';
@@ -31,32 +31,63 @@ const Index = () => {
       link.addEventListener('click', handleSmoothScroll);
     });
 
-    // Parallax scroll effect
-    const handleParallaxScroll = () => {
+    // Advanced parallax and cinematic effects
+    const handleCinematicScroll = () => {
       const scrolled = window.pageYOffset;
-      const parallaxElements = document.querySelectorAll('.parallax-element');
+      const rate = scrolled * -0.3;
       
+      // Parallax background elements
+      const parallaxElements = document.querySelectorAll('.parallax-bg');
       parallaxElements.forEach((element, index) => {
-        const rate = scrolled * -0.5 * (index + 1);
-        (element as HTMLElement).style.transform = `translateY(${rate}px)`;
+        const speed = (index + 1) * 0.2;
+        (element as HTMLElement).style.transform = `translateY(${scrolled * speed}px)`;
+      });
+
+      // Depth-based transform for 3D elements
+      const depthElements = document.querySelectorAll('.depth-layer-1, .depth-layer-2, .depth-layer-3');
+      depthElements.forEach((element) => {
+        const depth = element.classList.contains('depth-layer-1') ? 0.1 : 
+                     element.classList.contains('depth-layer-2') ? 0.2 : 0.3;
+        (element as HTMLElement).style.transform = `translateZ(${rate * depth}px)`;
       });
     };
 
-    window.addEventListener('scroll', handleParallaxScroll);
+    // Cinematic scroll-triggered animations
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -100px 0px'
+    };
+
+    const cinematicObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, observerOptions);
+
+    // Observe all cinematic elements
+    const cinematicElements = document.querySelectorAll(
+      '.scroll-trigger, .scroll-slide-left, .scroll-slide-right, .scroll-scale-3d'
+    );
+    cinematicElements.forEach((el) => cinematicObserver.observe(el));
+
+    window.addEventListener('scroll', handleCinematicScroll);
 
     return () => {
       links.forEach(link => {
         link.removeEventListener('click', handleSmoothScroll);
       });
-      window.removeEventListener('scroll', handleParallaxScroll);
+      window.removeEventListener('scroll', handleCinematicScroll);
+      cinematicObserver.disconnect();
     };
   }, []);
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-slate-900 text-white">
       <Navigation />
-      <HeroSection />
-      <ProductsSection />
+      <CinematicHero />
+      <SimulatorShowcase />
       <AITechSection />
       <ContactSection />
       <Footer />

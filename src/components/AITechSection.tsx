@@ -1,134 +1,242 @@
 
 import React, { useEffect, useState } from 'react';
-import { Brain, Cpu, Eye, Zap } from 'lucide-react';
+import { Brain, Cpu, Eye, Zap, Network, Target, Clock, TrendingUp } from 'lucide-react';
 
 const AITechSection = () => {
-  const [dataFlowStep, setDataFlowStep] = useState(0);
   const [neuralActive, setNeuralActive] = useState(false);
+  const [dataStream, setDataStream] = useState(0);
+  const [processingNodes, setProcessingNodes] = useState([]);
 
   useEffect(() => {
-    const timer = setInterval(() => {
-      setDataFlowStep(prev => (prev + 1) % 4);
+    const neuralTimer = setTimeout(() => setNeuralActive(true), 500);
+    
+    const dataTimer = setInterval(() => {
+      setDataStream(prev => (prev + 1) % 4);
     }, 1500);
 
-    const neuralTimer = setTimeout(() => setNeuralActive(true), 1000);
+    // Initialize processing nodes
+    const nodes = Array.from({ length: 12 }, (_, i) => ({
+      id: i,
+      x: (Math.cos((i * 360) / 12 * Math.PI / 180) * 120) + 160,
+      y: (Math.sin((i * 360) / 12 * Math.PI / 180) * 120) + 160,
+      active: false,
+      delay: i * 200
+    }));
+    setProcessingNodes(nodes);
+
+    // Activate nodes in sequence
+    nodes.forEach((node, index) => {
+      setTimeout(() => {
+        setProcessingNodes(prev => 
+          prev.map(n => n.id === index ? { ...n, active: true } : n)
+        );
+      }, node.delay);
+    });
 
     return () => {
-      clearInterval(timer);
       clearTimeout(neuralTimer);
+      clearInterval(dataTimer);
     };
   }, []);
 
-  const dataPoints = [
-    { label: "Eye Tracking", value: "120Hz", icon: Eye },
-    { label: "Performance Metrics", value: "Real-time", icon: Zap },
-    { label: "Neural Analysis", value: "Edge Computing", icon: Brain },
-    { label: "Debrief Generation", value: "AI Powered", icon: Cpu }
-  ];
-
-  const features = [
+  const aiCapabilities = [
     {
-      title: "Eye Tracking Analysis",
-      description: "Advanced eye tracking technology monitors pilot attention patterns and scan behaviors, providing insights into situational awareness and cognitive load.",
+      title: 'Eye Tracking Analytics',
+      description: 'Advanced gaze pattern analysis monitoring pilot attention distribution and scan behavior with millisecond precision.',
       icon: Eye,
+      color: 'electric-blue',
       stats: [
-        { label: "Sampling Rate", value: "120Hz" },
-        { label: "Accuracy", value: "±2°" }
-      ]
+        { label: 'Sampling Rate', value: '120Hz' },
+        { label: 'Precision', value: '±0.5°' },
+        { label: 'Latency', value: '<5ms' }
+      ],
+      dataPoints: ['Fixation Duration', 'Saccade Velocity', 'Attention Zones', 'Scan Patterns']
     },
     {
-      title: "Performance Metrics",
-      description: "Real-time collection and analysis of flight parameters, control inputs, and response times to create comprehensive pilot performance profiles.",
-      icon: Zap,
+      title: 'Performance Metrics',
+      description: 'Real-time collection and analysis of flight parameters, control inputs, and physiological responses.',
+      icon: TrendingUp,
+      color: 'radar-green',
       stats: [
-        { label: "Data Points", value: "100+" },
-        { label: "Resolution", value: "1ms" }
-      ]
+        { label: 'Data Points', value: '500+' },
+        { label: 'Frequency', value: '1kHz' },
+        { label: 'Channels', value: '32' }
+      ],
+      dataPoints: ['Control Precision', 'Response Time', 'Workload Index', 'Stress Markers']
     },
     {
-      title: "Automated Debrief",
-      description: "AI-generated detailed debrief reports with personalized recommendations, trend analysis, and targeted training suggestions.",
+      title: 'Neural Processing',
+      description: 'Edge-based AI processing using custom neural networks optimized for real-time pilot assessment.',
       icon: Brain,
+      color: 'cockpit-amber',
       stats: [
-        { label: "Accuracy", value: "99.7%" },
-        { label: "Generation Time", value: "30s" }
-      ]
+        { label: 'Inference', value: '<10ms' },
+        { label: 'Accuracy', value: '99.7%' },
+        { label: 'Models', value: '15+' }
+      ],
+      dataPoints: ['Skill Assessment', 'Risk Prediction', 'Learning Curve', 'Competency Score']
     }
   ];
 
+  const processingMetrics = [
+    { label: 'Neural Inference Time', value: '<10ms', icon: Clock },
+    { label: 'Edge Processing Power', value: '250 TOPS', icon: Cpu },
+    { label: 'Prediction Accuracy', value: '99.7%', icon: Target },
+    { label: 'Parallel Channels', value: '64x', icon: Network }
+  ];
+
   return (
-    <section id="ai-tech" className="section-padding bg-white">
-      <div className="container-width">
-        <div className="text-center mb-16 scroll-animate">
+    <section className="section-padding bg-gradient-to-b from-slate-900 to-slate-800 relative overflow-hidden">
+      {/* Neural Network Background */}
+      <div className="absolute inset-0 opacity-10">
+        <svg className="w-full h-full" viewBox="0 0 800 600">
+          {/* Connection Lines */}
+          {processingNodes.map((node, i) => (
+            <g key={`connections-${i}`}>
+              {processingNodes.slice(i + 1, i + 4).map((targetNode, j) => (
+                <line
+                  key={`line-${i}-${j}`}
+                  x1={node.x}
+                  y1={node.y}
+                  x2={targetNode.x}
+                  y2={targetNode.y}
+                  stroke="url(#neuralGradient)"
+                  strokeWidth="1"
+                  opacity={node.active && targetNode.active ? "0.6" : "0.2"}
+                  className="transition-opacity duration-1000"
+                />
+              ))}
+            </g>
+          ))}
+          
+          <defs>
+            <linearGradient id="neuralGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" stopColor="#2e9896" />
+              <stop offset="100%" stopColor="#00c8ff" />
+            </linearGradient>
+          </defs>
+        </svg>
+      </div>
+
+      <div className="container-width relative z-10">
+        {/* Section Header */}
+        <div className="text-center mb-20 scroll-trigger">
           <h2 className="heading-lg mb-6">
-            <span className="brand-gradient">AI-Powered Analytics</span>
+            <span className="text-electric-blue">AI-POWERED</span>{' '}
+            <span className="text-white">ANALYTICS</span>
           </h2>
-          <p className="body-lg max-w-3xl mx-auto">
-            Edge computing and machine learning revolutionizing pilot training assessment
+          <p className="body-lg max-w-3xl mx-auto mb-8">
+            Edge computing and machine learning revolutionizing{' '}
+            <span className="text-teal-primary font-semibold">pilot training assessment</span>{' '}
+            with real-time neural processing.
           </p>
-          <div className="w-24 h-1 bg-gradient-to-r from-[#2e9896] to-[#004443] mx-auto mt-6 rounded-full"></div>
+          <div className="w-32 h-1 bg-gradient-to-r from-electric-blue to-teal-primary mx-auto"></div>
         </div>
 
-        <div className="grid lg:grid-cols-2 gap-12 items-center">
-          {/* AI Visualization */}
+        <div className="grid lg:grid-cols-2 gap-16 items-center mb-20">
+          {/* AI Neural Visualization */}
           <div className="scroll-slide-left">
-            <div className="glass-panel p-8 relative">
+            <div className="glass-cockpit p-8 relative">
               {/* Central AI Core */}
-              <div className="text-center mb-8">
-                <div className="w-32 h-32 mx-auto bg-gradient-to-br from-[#2e9896] to-[#004443] rounded-full flex items-center justify-center mb-4 animate-float">
-                  <div className="w-24 h-24 bg-gradient-to-br from-[#2e9896] to-[#004443] rounded-full flex items-center justify-center opacity-80">
-                    <Brain className="w-12 h-12 text-white" />
+              <div className="relative w-80 h-80 mx-auto">
+                {/* Core Processor */}
+                <div className="absolute inset-16 glass-hud rounded-full flex items-center justify-center animate-float-3d">
+                  <div className="w-32 h-32 bg-gradient-to-br from-electric-blue via-teal-primary to-radar-green rounded-full flex items-center justify-center relative">
+                    <Brain className="w-16 h-16 text-white animate-neural-pulse" />
+                    
+                    {/* Pulsing Rings */}
+                    <div className="absolute inset-0 rounded-full border-2 border-electric-blue animate-ping opacity-20"></div>
+                    <div className="absolute inset-2 rounded-full border border-teal-primary animate-ping opacity-30" style={{ animationDelay: '0.5s' }}></div>
                   </div>
                 </div>
 
-                <h3 className="heading-sm mb-2">Neural Processing Unit</h3>
-                <p className="body-md">Real-time pilot performance analysis</p>
+                {/* Processing Nodes */}
+                {processingNodes.map((node, index) => (
+                  <div
+                    key={node.id}
+                    className={`absolute w-4 h-4 rounded-full transition-all duration-1000 ${
+                      node.active 
+                        ? 'bg-electric-blue shadow-lg shadow-electric-blue/50 animate-neural-pulse' 
+                        : 'bg-slate-600'
+                    }`}
+                    style={{
+                      left: `${node.x - 8}px`,
+                      top: `${node.y - 8}px`,
+                    }}
+                  />
+                ))}
+
+                {/* Data Flow Indicators */}
+                <div className={`absolute top-4 left-1/2 transform -translate-x-1/2 transition-opacity duration-500 ${
+                  dataStream === 0 ? 'opacity-100' : 'opacity-30'
+                }`}>
+                  <div className="w-2 h-8 bg-gradient-to-b from-radar-green to-transparent animate-data-flow"></div>
+                </div>
+                
+                <div className={`absolute bottom-4 left-1/2 transform -translate-x-1/2 transition-opacity duration-500 ${
+                  dataStream === 1 ? 'opacity-100' : 'opacity-30'
+                }`}>
+                  <div className="w-2 h-8 bg-gradient-to-t from-electric-blue to-transparent animate-data-flow"></div>
+                </div>
               </div>
 
-              {/* Data Flow Visualization */}
-              <div className="grid grid-cols-2 gap-4">
-                {dataPoints.map((point, index) => (
-                  <div 
-                    key={index}
-                    className={`glass-panel p-4 border-2 transition-all duration-500 ${
-                      dataFlowStep === index ? 'brand-border bg-[#2e9896]/10' : 'border-gray-200'
-                    }`}
-                  >
-                    <div className="flex items-center space-x-2 mb-2">
-                      <point.icon className="w-4 h-4 brand-accent" />
-                      <div className="text-sm brand-accent font-medium">
-                        {point.label}
-                      </div>
-                    </div>
-                    <div className="text-black font-bold">{point.value}</div>
-                    {dataFlowStep === index && (
-                      <div className="w-full h-1 bg-gradient-to-r from-[#2e9896] to-[#004443] rounded-full mt-2"></div>
-                    )}
+              {/* AI Status Display */}
+              <div className="mt-8 space-y-4">
+                <div className="glass-hud p-4">
+                  <div className="flex items-center justify-between mb-2">
+                    <span className="text-electric-blue text-sm tech-mono">NEURAL PROCESSING</span>
+                    <span className="text-radar-green text-sm tech-mono">ACTIVE</span>
                   </div>
-                ))}
+                  <div className="w-full bg-slate-800 rounded-full h-2">
+                    <div className="bg-gradient-to-r from-electric-blue to-radar-green h-2 rounded-full animate-pulse" style={{ width: '94%' }}></div>
+                  </div>
+                </div>
+
+                <div className="grid grid-cols-2 gap-4">
+                  {processingMetrics.map((metric, i) => (
+                    <div key={i} className="glass-hud p-3 text-center">
+                      <metric.icon className="w-5 h-5 mx-auto mb-2 text-teal-primary" />
+                      <div className="text-lg font-bold text-white">{metric.value}</div>
+                      <div className="text-xs text-slate-400 tech-mono">{metric.label}</div>
+                    </div>
+                  ))}
+                </div>
               </div>
             </div>
           </div>
 
-          {/* AI Features */}
-          <div className="space-y-6 scroll-slide-right">
-            {features.map((feature, index) => (
-              <div key={index} className="glass-panel p-6 card-hover">
-                <div className="flex items-center space-x-4 mb-4">
-                  <div className="w-12 h-12 bg-gradient-to-br from-[#2e9896] to-[#004443] rounded-lg flex items-center justify-center">
-                    <feature.icon className="w-6 h-6 text-white" />
+          {/* AI Capabilities */}
+          <div className="scroll-slide-right space-y-8">
+            {aiCapabilities.map((capability, index) => (
+              <div key={index} className="glass-cockpit p-6 card-3d-hover">
+                <div className="flex items-start space-x-4 mb-4">
+                  <div className={`w-12 h-12 bg-gradient-to-br from-${capability.color} to-slate-700 rounded-lg flex items-center justify-center`}>
+                    <capability.icon className="w-6 h-6 text-white" />
                   </div>
-                  <h3 className="heading-sm">{feature.title}</h3>
+                  <div className="flex-1">
+                    <h3 className="heading-sm mb-2">{capability.title}</h3>
+                    <p className="body-md text-slate-300 leading-relaxed mb-4">
+                      {capability.description}
+                    </p>
+                  </div>
                 </div>
-                <p className="body-md mb-4 leading-relaxed">
-                  {feature.description}
-                </p>
-                <div className="flex space-x-4">
-                  {feature.stats.map((stat, i) => (
+
+                {/* Stats */}
+                <div className="grid grid-cols-3 gap-4 mb-4">
+                  {capability.stats.map((stat, i) => (
                     <div key={i} className="text-center">
-                      <div className="text-lg font-bold brand-accent">{stat.value}</div>
-                      <div className="text-xs text-gray-500">{stat.label}</div>
+                      <div className={`text-lg font-bold text-${capability.color}`}>{stat.value}</div>
+                      <div className="text-xs text-slate-500 tech-mono">{stat.label}</div>
                     </div>
+                  ))}
+                </div>
+
+                {/* Data Points */}
+                <div className="flex flex-wrap gap-2">
+                  {capability.dataPoints.map((point, i) => (
+                    <span key={i} className={`px-3 py-1 glass-hud text-xs text-${capability.color} tech-mono`}>
+                      {point}
+                    </span>
                   ))}
                 </div>
               </div>
@@ -136,26 +244,34 @@ const AITechSection = () => {
           </div>
         </div>
 
-        {/* AI Statistics */}
-        <div className="mt-16 glass-panel p-8 scroll-scale">
-          <h3 className="heading-md mb-8 text-center">AI PERFORMANCE METRICS</h3>
+        {/* Edge Computing Infrastructure */}
+        <div className="glass-cockpit p-8 scroll-scale-3d">
+          <div className="text-center mb-8">
+            <h3 className="heading-md mb-4 text-white">EDGE COMPUTING ARCHITECTURE</h3>
+            <p className="body-lg text-slate-300 max-w-3xl mx-auto">
+              Distributed processing network delivering ultra-low latency AI inference for real-time flight training analysis.
+            </p>
+          </div>
+
           <div className="grid md:grid-cols-4 gap-8">
-            <div className="text-center">
-              <div className="text-4xl font-bold brand-accent mb-2">99.7%</div>
-              <div className="body-sm">Accuracy Rate</div>
-            </div>
-            <div className="text-center">
-              <div className="text-4xl font-bold brand-accent mb-2">&lt; 50ms</div>
-              <div className="body-sm">Response Time</div>
-            </div>
-            <div className="text-center">
-              <div className="text-4xl font-bold brand-accent mb-2">24/7</div>
-              <div className="body-sm">Monitoring</div>
-            </div>
-            <div className="text-center">
-              <div className="text-4xl font-bold brand-accent mb-2">100+</div>
-              <div className="body-sm">Data Points</div>
-            </div>
+            {[
+              { label: 'Processing Nodes', value: '8x GPU', icon: Cpu, color: 'electric-blue' },
+              { label: 'Memory Bandwidth', value: '2TB/s', icon: Zap, color: 'radar-green' },
+              { label: 'AI Models', value: '15+', icon: Brain, color: 'teal-primary' },
+              { label: 'Inference Rate', value: '10,000/s', icon: Target, color: 'cockpit-amber' }
+            ].map((spec, index) => (
+              <div key={index} className="text-center group">
+                <div className={`w-16 h-16 glass-hud rounded-full flex items-center justify-center mx-auto mb-4 group-hover:animate-neural-pulse border border-${spec.color}`}>
+                  <spec.icon className={`w-8 h-8 text-${spec.color}`} />
+                </div>
+                <div className={`text-3xl font-bold text-${spec.color} mb-2 font-mono`}>
+                  {spec.value}
+                </div>
+                <div className="body-sm text-slate-400 uppercase tracking-wider">
+                  {spec.label}
+                </div>
+              </div>
+            ))}
           </div>
         </div>
       </div>
