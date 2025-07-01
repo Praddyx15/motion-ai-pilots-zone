@@ -141,7 +141,7 @@ const AITechSection = () => {
               <div className="text-blue-200">Accuracy Rate</div>
             </div>
             <div className="text-center">
-              <div className="text-4xl font-bold text-cyan-400 mb-2 animate-data-pulse">< 50ms</div>
+              <div className="text-4xl font-bold text-cyan-400 mb-2 animate-data-pulse">&lt; 50ms</div>
               <div className="text-cyan-200">Response Time</div>
             </div>
             <div className="text-center">
