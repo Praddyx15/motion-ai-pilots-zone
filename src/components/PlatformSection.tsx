@@ -163,7 +163,7 @@ const PlatformSection = () => {
           </div>
           <div className="glass-cockpit p-8 text-center">
             <div className="text-4xl font-bold text-electric-blue mb-2 font-mono">
-              <50ms
+              &lt;50ms
             </div>
             <div className="body-sm text-slate-400 uppercase tracking-wider">
               Edge Latency
