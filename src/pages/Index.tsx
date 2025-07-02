@@ -1,6 +1,6 @@
 
 import React, { useEffect } from 'react';
-import FloatingNavigation from '../components/FloatingNavigation';
+import SideNavigation from '../components/SideNavigation';
 import EnhancedHeroSection from '../components/EnhancedHeroSection';
 import Enhanced3DSimulator from '../components/Enhanced3DSimulator';
 import AITechSection from '../components/AITechSection';
@@ -82,7 +82,7 @@ const Index = () => {
         if (element) {
           // Cinematic scroll with easing
           const startPosition = window.pageYOffset;
-          const targetPosition = element.offsetTop;
+          const targetPosition = (element as HTMLElement).offsetTop;
           const distance = targetPosition - startPosition;
           const duration = 1500;
           let start: number | null = null;
@@ -128,7 +128,7 @@ const Index = () => {
 
   return (
     <div className="min-h-screen bg-slate-900 text-white relative overflow-x-hidden">
-      <FloatingNavigation />
+      <SideNavigation />
       
       {/* Main Content with Cinematic Flow */}
       <div className="relative">

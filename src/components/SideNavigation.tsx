@@ -1,92 +1,119 @@
-
 import React, { useState, useEffect } from 'react';
-import { Home, Monitor, Brain, Globe, User, Mail } from 'lucide-react';
+import { Home, Monitor, Brain, Database, User, Mail, Menu, X } from 'lucide-react';
 
 const SideNavigation = () => {
   const [activeSection, setActiveSection] = useState('home');
+  const [isExpanded, setIsExpanded] = useState(false);
 
   const navItems = [
-    { id: 'home', label: 'HOME', icon: Home },
-    { id: 'simulator', label: 'SIMULATOR', icon: Monitor },
-    { id: 'ai-tech', label: 'AI TECH', icon: Brain },
-    { id: 'platform', label: 'PLATFORM', icon: Globe },
-    { id: 'about', label: 'ABOUT', icon: User },
-    { id: 'contact', label: 'CONTACT', icon: Mail }
+    { id: 'home', label: 'HOME', icon: Home, color: 'teal-primary' },
+    { id: 'simulator', label: 'SIMULATOR', icon: Monitor, color: 'electric-blue' },
+    { id: 'ai-tech', label: 'AI TECH', icon: Brain, color: 'radar-green' },
+    { id: 'platform', label: 'PLATFORM', icon: Database, color: 'cockpit-amber' },
+    { id: 'about', label: 'ABOUT', icon: User, color: 'afterburner-orange' },
+    { id: 'contact', label: 'CONTACT', icon: Mail, color: 'electric-blue' }
   ];
 
   useEffect(() => {
-    const observerOptions = {
-      threshold: 0.3,
-      rootMargin: '-20% 0px -20% 0px'
+    const handleScroll = () => {
+      const sections = ['home', 'simulator', 'ai-tech', 'platform', 'about', 'contact'];
+      const scrollPosition = window.scrollY + window.innerHeight / 2;
+
+      for (const section of sections) {
+        const element = document.getElementById(section);
+        if (element) {
+          const { offsetTop, offsetHeight } = element as HTMLElement;
+          if (scrollPosition >= offsetTop && scrollPosition < offsetTop + offsetHeight) {
+            setActiveSection(section);
+            break;
+          }
+        }
+      }
     };
 
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          setActiveSection(entry.target.id);
-        }
-      });
-    }, observerOptions);
-
-    navItems.forEach(({ id }) => {
-      const element = document.getElementById(id);
-      if (element) observer.observe(element);
-    });
-
-    return () => observer.disconnect();
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);
     if (element) {
-      element.scrollIntoView({ 
-        behavior: 'smooth',
-        block: 'start'
-      });
+      element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      setIsExpanded(false); // Collapse after navigation
     }
   };
 
   return (
-    <nav className="fixed left-0 top-0 h-screen w-20 z-50 glass-cockpit border-r border-teal-primary/30">
-      <div className="flex flex-col h-full">
-        {/* Logo */}
-        <div className="p-4 border-b border-teal-primary/30">
-          <div className="w-12 h-12 bg-gradient-to-br from-teal-primary to-electric-blue rounded-lg flex items-center justify-center animate-hud-glow">
-            <span className="text-white font-bold text-lg font-mono">60</span>
+    <>
+      {/* Side Toggle Button - Always Visible */}
+      <button
+        onClick={() => setIsExpanded(!isExpanded)}
+        className="fixed top-1/2 right-6 -translate-y-1/2 z-50 w-14 h-14 glass-cockpit rounded-full flex items-center justify-center hover:scale-110 transition-all duration-300 animate-hud-glow border border-teal-primary/30"
+      >
+        {isExpanded ? (
+          <X className="w-6 h-6 text-teal-primary" />
+        ) : (
+          <Menu className="w-6 h-6 text-teal-primary" />
+        )}
+      </button>
+
+      {/* Expanded Navigation Panel */}
+      <div className={`fixed top-0 right-0 h-full w-80 z-40 transform transition-transform duration-500 ease-in-out ${
+        isExpanded ? 'translate-x-0' : 'translate-x-full'
+      }`}>
+        <div className="glass-cockpit h-full backdrop-blur-xl border-l border-teal-primary/20">
+          {/* Header */}
+          <div className="p-6 border-b border-teal-primary/20">
+            <div className="flex items-center justify-center space-x-2">
+              <div className="w-3 h-3 bg-radar-green rounded-full animate-pulse"></div>
+              <span className="text-sm text-radar-green font-mono uppercase tracking-wider">Navigation HUD</span>
+            </div>
+          </div>
+
+          {/* Navigation Items */}
+          <div className="p-6 space-y-4">
+            {navItems.map((item, index) => (
+              <button
+                key={item.id}
+                onClick={() => scrollToSection(item.id)}
+                className={`w-full glass-hud p-4 rounded-lg flex items-center space-x-4 transition-all duration-300 hover:scale-105 group ${
+                  activeSection === item.id ? `border-2 border-${item.color} animate-hud-glow` : 'hover:border border-white/20'
+                }`}
+                style={{
+                  animationDelay: `${index * 100}ms`
+                }}
+              >
+                <item.icon className={`w-6 h-6 text-${item.color}`} />
+                <span className={`font-mono text-sm uppercase tracking-wider text-${item.color} group-hover:text-white transition-colors`}>
+                  {item.label}
+                </span>
+              </button>
+            ))}
+          </div>
+
+          {/* Footer Status */}
+          <div className="absolute bottom-6 left-6 right-6">
+            <div className="glass-hud p-4 rounded-lg">
+              <div className="flex items-center justify-between">
+                <div className="flex items-center space-x-2">
+                  <div className="w-2 h-2 bg-radar-green rounded-full animate-pulse"></div>
+                  <span className="text-xs text-radar-green font-mono">SYSTEM ACTIVE</span>
+                </div>
+                <span className="text-xs text-electric-blue font-mono">60°MS</span>
+              </div>
+            </div>
           </div>
         </div>
-
-        {/* Navigation Items */}
-        <div className="flex-1 flex flex-col justify-center space-y-8 p-4">
-          {navItems.map((item) => (
-            <button
-              key={item.id}
-              onClick={() => scrollToSection(item.id)}
-              className={`group relative w-12 h-12 rounded-lg transition-all duration-300 ${
-                activeSection === item.id
-                  ? 'bg-teal-primary text-white animate-hud-glow'
-                  : 'glass-hud text-slate-400 hover:text-teal-primary hover:bg-teal-primary/20'
-              }`}
-            >
-              <item.icon className="w-6 h-6 mx-auto" />
-              
-              {/* Tooltip */}
-              <div className="absolute left-16 top-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">
-                <div className="glass-hud px-3 py-2 rounded-lg whitespace-nowrap">
-                  <span className="text-sm font-medium text-white tech-mono">
-                    {item.label}
-                  </span>
-                  <div className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-1 w-2 h-2 bg-slate-800 rotate-45 border-l border-b border-teal-primary/30"></div>
-                </div>
-              </div>
-            </button>
-          ))}
-        </div>
-
-        {/* Active Indicator */}
-        <div className="absolute right-0 top-1/2 -translate-y-1/2 w-1 bg-gradient-to-b from-transparent via-teal-primary to-transparent h-32 animate-data-flow"></div>
       </div>
-    </nav>
+
+      {/* Backdrop */}
+      {isExpanded && (
+        <div 
+          className="fixed inset-0 bg-black/50 backdrop-blur-sm z-30"
+          onClick={() => setIsExpanded(false)}
+        />
+      )}
+    </>
   );
 };
 
