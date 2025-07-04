@@ -180,22 +180,70 @@
     box-shadow: 0 0 20px rgba(0, 200, 255, 0.4);
   }
 
-  /* Enhanced Animation Keyframes for Cinematic Experience */
+  /* Enhanced Animation Keyframes for Professional Cinematic Experience */
   @keyframes cinematicZoom {
     0% {
-      transform: scale(0.8) rotateX(15deg) rotateY(5deg);
+      transform: scale(0.9) rotateX(8deg) rotateY(3deg);
       opacity: 0;
-      filter: blur(10px);
+      filter: blur(6px) brightness(0.8);
     }
-    50% {
-      transform: scale(0.95) rotateX(5deg) rotateY(2deg);
-      opacity: 0.7;
-      filter: blur(2px);
+    40% {
+      transform: scale(0.98) rotateX(3deg) rotateY(1deg);
+      opacity: 0.8;
+      filter: blur(1px) brightness(0.95);
     }
     100% {
       transform: scale(1) rotateX(0deg) rotateY(0deg);
       opacity: 1;
-      filter: blur(0px);
+      filter: blur(0px) brightness(1);
+    }
+  }
+
+  @keyframes radarPulse {
+    0%, 100% {
+      transform: scale(1);
+      opacity: 1;
+    }
+    50% {
+      transform: scale(1.2);
+      opacity: 0.4;
+    }
+  }
+
+  @keyframes dashFlow {
+    0% {
+      stroke-dashoffset: 0;
+    }
+    100% {
+      stroke-dashoffset: -40;
+    }
+  }
+
+  @keyframes dashFlowReverse {
+    0% {
+      stroke-dashoffset: 0;
+    }
+    100% {
+      stroke-dashoffset: 40;
+    }
+  }
+
+  @keyframes waypointTravel {
+    0% {
+      transform: translateX(-20px) translateY(0px) scale(0);
+      opacity: 0;
+    }
+    10% {
+      transform: translateX(0px) translateY(0px) scale(1);
+      opacity: 1;
+    }
+    90% {
+      transform: translateX(calc(100vw - 20px)) translateY(-100px) scale(1);
+      opacity: 1;
+    }
+    100% {
+      transform: translateX(calc(100vw + 20px)) translateY(-120px) scale(0);
+      opacity: 0;
     }
   }
 
@@ -378,11 +426,27 @@
     animation: matrixRain 4s linear infinite;
   }
 
-  /* Enhanced Scroll-triggered animations */
+  .animate-radar-pulse {
+    animation: radarPulse 3s ease-in-out infinite;
+  }
+
+  .animate-dash-flow {
+    animation: dashFlow 8s linear infinite;
+  }
+
+  .animate-dash-flow-reverse {
+    animation: dashFlowReverse 6s linear infinite;
+  }
+
+  .animate-waypoint-travel {
+    animation: waypointTravel 12s ease-in-out infinite;
+  }
+
+  /* Professional Scroll-triggered animations */
   .scroll-trigger {
     opacity: 0;
-    transform: translateY(80px) rotateX(20deg) scale(0.9);
-    transition: all 1.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    transform: translateY(40px) rotateX(8deg) scale(0.95);
+    transition: all 1.2s cubic-bezier(0.23, 1, 0.32, 1);
     transform-style: preserve-3d;
   }
 
@@ -393,8 +457,8 @@
 
   .scroll-slide-left {
     opacity: 0;
-    transform: translateX(-100px) rotateY(20deg) scale(0.8);
-    transition: all 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    transform: translateX(-60px) rotateY(12deg) scale(0.9);
+    transition: all 1s cubic-bezier(0.23, 1, 0.32, 1);
     transform-style: preserve-3d;
   }
 
@@ -405,8 +469,8 @@
 
   .scroll-slide-right {
     opacity: 0;
-    transform: translateX(100px) rotateY(-20deg) scale(0.8);
-    transition: all 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    transform: translateX(60px) rotateY(-12deg) scale(0.9);
+    transition: all 1s cubic-bezier(0.23, 1, 0.32, 1);
     transform-style: preserve-3d;
   }
 
@@ -417,8 +481,8 @@
 
   .scroll-scale-3d {
     opacity: 0;
-    transform: scale(0.6) rotateX(30deg) rotateY(15deg) translateZ(-100px);
-    transition: all 1.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    transform: scale(0.85) rotateX(15deg) rotateY(8deg) translateZ(-40px);
+    transition: all 1.4s cubic-bezier(0.23, 1, 0.32, 1);
     transform-style: preserve-3d;
   }
 
@@ -470,19 +534,19 @@
     @apply max-w-7xl mx-auto px-6 md:px-8;
   }
 
-  /* Card hover effects with 3D */
+  /* Professional Card hover effects with subtle 3D */
   .card-3d-hover {
-    @apply transition-all duration-700;
+    @apply transition-all duration-500;
     transform-style: preserve-3d;
     perspective: 1000px;
   }
 
   .card-3d-hover:hover {
-    transform: translateY(-20px) rotateX(10deg) rotateY(5deg) scale(1.05);
+    transform: translateY(-12px) rotateX(5deg) rotateY(2deg) scale(1.02);
     box-shadow: 
-      0 30px 80px rgba(0, 0, 0, 0.4),
-      0 0 60px rgba(46, 152, 150, 0.3),
-      inset 0 1px 0 rgba(255, 255, 255, 0.2);
+      0 20px 60px rgba(0, 0, 0, 0.3),
+      0 0 40px rgba(46, 152, 150, 0.2),
+      inset 0 1px 0 rgba(255, 255, 255, 0.1);
   }
 
   /* Radial gradient utility */

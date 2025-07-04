@@ -1,6 +1,7 @@
 
 import React, { useEffect } from 'react';
-import SideNavigation from '../components/SideNavigation';
+import AircraftHUD from '../components/AircraftHUD';
+import AviationBackground from '../components/AviationBackground';
 import EnhancedHeroSection from '../components/EnhancedHeroSection';
 import Enhanced3DSimulator from '../components/Enhanced3DSimulator';
 import AITechSection from '../components/AITechSection';
@@ -128,10 +129,11 @@ const Index = () => {
 
   return (
     <div className="min-h-screen bg-slate-900 text-white relative overflow-x-hidden">
-      <SideNavigation />
+      <AviationBackground />
+      <AircraftHUD />
       
-      {/* Main Content with Cinematic Flow */}
-      <div className="relative">
+      {/* Main Content with Professional Cinematic Flow */}
+      <div className="relative z-10">
         <EnhancedHeroSection />
         <Enhanced3DSimulator />
         <AITechSection />
@@ -141,13 +143,6 @@ const Index = () => {
       </div>
       
       <ScrollAnimations />
-      
-      {/* Global Cinematic Effects */}
-      <div className="fixed inset-0 pointer-events-none z-0">
-        <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-slate-900/20 via-transparent to-slate-900/20"></div>
-        <div className="absolute top-1/4 left-0 w-full h-px bg-gradient-to-r from-transparent via-teal-primary/20 to-transparent animate-data-flow"></div>
-        <div className="absolute bottom-1/4 right-0 w-full h-px bg-gradient-to-l from-transparent via-electric-blue/20 to-transparent animate-data-flow" style={{ animationDelay: '2s' }}></div>
-      </div>
     </div>
   );
 };
