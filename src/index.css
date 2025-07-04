@@ -1,3 +1,4 @@
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -27,14 +28,13 @@
     --ring: 222.2 84% 4.9%;
     --radius: 0.5rem;
 
-    /* Aviation Color Palette - Enhanced */
-    --jet-black: 0 0% 8%;
-    --afterburner-orange: 16 100% 50%;
-    --radar-green: 120 100% 50%;
-    --electric-blue: 200 100% 50%;
+    /* Professional Aviation Color System */
+    --jet-black: 10 10% 4%;
+    --deep-navy: 220 85% 6%;
+    --electric-blue: 200 100% 47%;
+    --radar-green: 120 100% 60%;
     --cockpit-amber: 45 100% 50%;
     --teal-primary: 180 55% 36%;
-    --teal-dark: 180 100% 13%;
   }
 
   * {
@@ -42,70 +42,74 @@
   }
   
   body {
-    @apply bg-slate-900 text-white overflow-x-hidden;
-    font-family: 'Inter', system-ui, -apple-system, sans-serif;
-    line-height: 1.6;
-    background: radial-gradient(ellipse at top, rgba(46, 152, 150, 0.1) 0%, rgba(0, 68, 67, 0.05) 50%, rgba(15, 23, 42, 1) 100%);
+    @apply overflow-x-hidden;
+    font-family: 'Orbitron', monospace;
+    line-height: 1.5;
+    background: linear-gradient(135deg, 
+      hsl(var(--jet-black)) 0%, 
+      hsl(var(--deep-navy)) 40%, 
+      hsl(220, 70%, 8%) 100%);
+    color: white;
+    scroll-behavior: smooth;
   }
 
-  /* Aviation Typography - Enhanced */
+  /* Professional Aviation Typography System */
   .heading-display {
-    @apply text-6xl md:text-8xl font-black text-white leading-none tracking-tight;
+    @apply text-5xl md:text-7xl font-black leading-none tracking-tight;
     font-family: 'Orbitron', monospace;
-    text-shadow: 0 0 30px rgba(46, 152, 150, 0.5);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    text-shadow: 0 0 20px rgba(0, 174, 239, 0.3);
   }
 
   .heading-xl {
-    @apply text-4xl md:text-6xl font-bold text-white leading-tight tracking-wide;
+    @apply text-3xl md:text-5xl font-bold leading-tight tracking-wide;
     font-family: 'Orbitron', monospace;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
   }
 
   .heading-lg {
-    @apply text-3xl md:text-4xl font-semibold text-white leading-tight;
+    @apply text-2xl md:text-4xl font-semibold leading-tight tracking-wide;
     font-family: 'Orbitron', monospace;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
   }
 
   .heading-md {
-    @apply text-2xl md:text-3xl font-semibold text-white leading-tight;
+    @apply text-xl md:text-2xl font-medium leading-tight tracking-wide;
     font-family: 'Orbitron', monospace;
-  }
-
-  .heading-sm {
-    @apply text-xl md:text-2xl font-medium text-white;
-    font-family: 'Orbitron', monospace;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
   }
 
   .body-lg {
-    @apply text-lg md:text-xl text-slate-300 leading-relaxed;
-    font-family: 'Inter', sans-serif;
+    @apply text-base md:text-lg leading-relaxed;
+    font-family: 'Exo 2', sans-serif;
+    letter-spacing: 0.01em;
   }
 
   .body-md {
-    @apply text-base md:text-lg text-slate-400 leading-relaxed;
-    font-family: 'Inter', sans-serif;
-  }
-
-  .body-sm {
-    @apply text-sm md:text-base text-slate-500;
-    font-family: 'Inter', sans-serif;
+    @apply text-sm md:text-base leading-relaxed;
+    font-family: 'Exo 2', sans-serif;
   }
 
   .tech-mono {
     font-family: 'JetBrains Mono', monospace;
-    @apply text-sm font-medium text-cyan-400;
+    @apply text-xs font-medium;
+    letter-spacing: 0.05em;
   }
 
-  /* Glassmorphism with Aviation Theme - Enhanced */
+  /* Professional Glassmorphism System */
   .glass-cockpit {
-    background: rgba(15, 23, 42, 0.85);
-    backdrop-filter: blur(25px) saturate(180%);
-    border: 1px solid rgba(46, 152, 150, 0.4);
-    border-radius: 16px;
+    background: rgba(2, 15, 31, 0.75);
+    backdrop-filter: blur(25px) saturate(150%);
+    border: 1px solid rgba(0, 174, 239, 0.2);
+    border-radius: 12px;
     box-shadow: 
-      0 12px 40px rgba(0, 0, 0, 0.4),
-      inset 0 1px 0 rgba(255, 255, 255, 0.15),
-      0 0 30px rgba(46, 152, 150, 0.15),
-      inset 0 -1px 0 rgba(46, 152, 150, 0.1);
+      0 8px 32px rgba(0, 0, 0, 0.4),
+      inset 0 1px 0 rgba(255, 255, 255, 0.1),
+      0 0 20px rgba(0, 174, 239, 0.1);
     position: relative;
   }
 
@@ -116,209 +120,74 @@
     left: 0;
     right: 0;
     height: 1px;
-    background: linear-gradient(90deg, transparent, rgba(46, 152, 150, 0.6), transparent);
-    animation: dataFlow 3s ease-in-out infinite;
+    background: linear-gradient(90deg, transparent, rgba(0, 174, 239, 0.5), transparent);
+    animation: systemDataFlow 4s ease-in-out infinite;
   }
 
   .glass-hud {
-    background: rgba(0, 68, 67, 0.3);
+    background: rgba(0, 174, 239, 0.08);
     backdrop-filter: blur(20px) brightness(110%);
-    border: 1px solid rgba(0, 200, 255, 0.5);
-    border-radius: 12px;
+    border: 1px solid rgba(0, 174, 239, 0.3);
+    border-radius: 8px;
     box-shadow: 
-      0 8px 32px rgba(0, 200, 255, 0.25),
-      inset 0 1px 0 rgba(0, 200, 255, 0.2),
-      0 0 20px rgba(0, 200, 255, 0.1);
+      0 4px 24px rgba(0, 174, 239, 0.15),
+      inset 0 1px 0 rgba(0, 174, 239, 0.2);
     position: relative;
   }
 
-  .glass-hud::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    height: 1px;
-    background: linear-gradient(90deg, transparent, rgba(0, 200, 255, 0.8), transparent);
-    animation: dataFlow 2s ease-in-out infinite reverse;
+  /* Professional Button System */
+  .btn-cockpit {
+    background: linear-gradient(135deg, 
+      rgba(0, 174, 239, 0.8) 0%, 
+      rgba(0, 174, 239, 0.6) 50%, 
+      rgba(0, 174, 239, 0.8) 100%);
+    @apply text-white font-bold px-8 py-4 rounded-lg transition-all duration-300;
+    font-family: 'Orbitron', monospace;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    border: 1px solid rgba(0, 174, 239, 0.4);
+    box-shadow: 
+      0 0 20px rgba(0, 174, 239, 0.3),
+      0 4px 16px rgba(0, 0, 0, 0.2);
+    position: relative;
+    overflow: hidden;
   }
 
-  /* Aviation Buttons - Enhanced */
-  .btn-cockpit {
-    background: linear-gradient(135deg, #2e9896, #004443);
-    @apply text-white font-bold px-8 py-4 rounded-lg transition-all duration-300 tracking-wider;
-    font-family: 'Orbitron', monospace;
-    box-shadow: 
-      0 0 20px rgba(46, 152, 150, 0.4),
-      0 4px 16px rgba(0, 0, 0, 0.3);
-    border: 1px solid rgba(46, 152, 150, 0.5);
-    text-transform: uppercase;
-    letter-spacing: 2px;
+  .btn-cockpit::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.5s;
+  }
+
+  .btn-cockpit:hover::before {
+    left: 100%;
   }
 
   .btn-cockpit:hover {
     transform: translateY(-2px);
     box-shadow: 
-      0 0 30px rgba(46, 152, 150, 0.6),
-      0 8px 24px rgba(0, 0, 0, 0.4);
-    border-color: rgba(46, 152, 150, 0.8);
+      0 0 30px rgba(0, 174, 239, 0.5),
+      0 8px 24px rgba(0, 0, 0, 0.3);
+    border-color: rgba(0, 174, 239, 0.8);
   }
 
-  .btn-hud {
-    @apply border-2 text-cyan-400 font-bold px-8 py-4 rounded-lg transition-all duration-300 tracking-wider;
-    font-family: 'Orbitron', monospace;
-    border-color: #00c8ff;
-    background: rgba(0, 200, 255, 0.1);
-    text-transform: uppercase;
-    letter-spacing: 2px;
-  }
-
-  .btn-hud:hover {
-    background: rgba(0, 200, 255, 0.2);
-    @apply text-white;
-    transform: translateY(-2px);
-    box-shadow: 0 0 20px rgba(0, 200, 255, 0.4);
-  }
-
-  /* Enhanced Animation Keyframes for Professional Cinematic Experience */
-  @keyframes cinematicZoom {
-    0% {
-      transform: scale(0.9) rotateX(8deg) rotateY(3deg);
-      opacity: 0;
-      filter: blur(6px) brightness(0.8);
-    }
-    40% {
-      transform: scale(0.98) rotateX(3deg) rotateY(1deg);
-      opacity: 0.8;
-      filter: blur(1px) brightness(0.95);
-    }
-    100% {
-      transform: scale(1) rotateX(0deg) rotateY(0deg);
-      opacity: 1;
-      filter: blur(0px) brightness(1);
-    }
-  }
-
-  @keyframes radarPulse {
+  /* Professional Animation Keyframes */
+  @keyframes systemDataFlow {
     0%, 100% {
-      transform: scale(1);
-      opacity: 1;
+      transform: translateX(-100%);
+      opacity: 0;
     }
     50% {
-      transform: scale(1.2);
-      opacity: 0.4;
-    }
-  }
-
-  @keyframes dashFlow {
-    0% {
-      stroke-dashoffset: 0;
+      opacity: 1;
     }
     100% {
-      stroke-dashoffset: -40;
-    }
-  }
-
-  @keyframes dashFlowReverse {
-    0% {
-      stroke-dashoffset: 0;
-    }
-    100% {
-      stroke-dashoffset: 40;
-    }
-  }
-
-  @keyframes waypointTravel {
-    0% {
-      transform: translateX(-20px) translateY(0px) scale(0);
+      transform: translateX(100%);
       opacity: 0;
-    }
-    10% {
-      transform: translateX(0px) translateY(0px) scale(1);
-      opacity: 1;
-    }
-    90% {
-      transform: translateX(calc(100vw - 20px)) translateY(-100px) scale(1);
-      opacity: 1;
-    }
-    100% {
-      transform: translateX(calc(100vw + 20px)) translateY(-120px) scale(0);
-      opacity: 0;
-    }
-  }
-
-  @keyframes radialWipe {
-    0% {
-      clip-path: circle(0% at center);
-      opacity: 0;
-    }
-    100% {
-      clip-path: circle(100% at center);
-      opacity: 1;
-    }
-  }
-
-  @keyframes glitchEffect {
-    0%, 100% {
-      transform: translateX(0);
-      filter: hue-rotate(0deg);
-    }
-    20% {
-      transform: translateX(-2px);
-      filter: hue-rotate(90deg);
-    }
-    40% {
-      transform: translateX(2px);
-      filter: hue-rotate(180deg);
-    }
-    60% {
-      transform: translateX(-1px);
-      filter: hue-rotate(270deg);
-    }
-    80% {
-      transform: translateX(1px);
-      filter: hue-rotate(360deg);
-    }
-  }
-
-  @keyframes hologramFlicker {
-    0%, 100% {
-      opacity: 1;
-      text-shadow: 0 0 10px rgba(46, 152, 150, 0.8);
-    }
-    50% {
-      opacity: 0.8;
-      text-shadow: 0 0 20px rgba(46, 152, 150, 1);
-    }
-  }
-
-  @keyframes matrixRain {
-    0% {
-      transform: translateY(-100vh);
-      opacity: 1;
-    }
-    100% {
-      transform: translateY(100vh);
-      opacity: 0;
-    }
-  }
-
-  /* Enhanced Animation Keyframes */
-  @keyframes cockpitBootup {
-    0% {
-      opacity: 0;
-      transform: scale(0.8) rotateX(45deg);
-      filter: blur(10px);
-    }
-    50% {
-      opacity: 0.5;
-      transform: scale(0.9) rotateX(20deg);
-      filter: blur(5px);
-    }
-    100% {
-      opacity: 1;
-      transform: scale(1) rotateX(0deg);
-      filter: blur(0px);
     }
   }
 
@@ -335,222 +204,185 @@
 
   @keyframes hudGlow {
     0%, 100% {
-      box-shadow: 0 0 20px rgba(0, 200, 255, 0.3);
-      border-color: rgba(0, 200, 255, 0.4);
+      box-shadow: 0 0 20px rgba(0, 174, 239, 0.2);
     }
     50% {
-      box-shadow: 0 0 40px rgba(0, 200, 255, 0.6);
-      border-color: rgba(0, 200, 255, 0.8);
+      box-shadow: 0 0 40px rgba(0, 174, 239, 0.4);
     }
   }
 
-  @keyframes float3D {
-    0%, 100% {
-      transform: translateY(0px) rotateX(0deg) rotateY(0deg);
-    }
-    33% {
-      transform: translateY(-10px) rotateX(5deg) rotateY(5deg);
-    }
-    66% {
-      transform: translateY(-5px) rotateX(-5deg) rotateY(-5deg);
-    }
-  }
-
-  @keyframes neuralPulse {
+  @keyframes systemPulse {
     0%, 100% {
       opacity: 0.6;
       transform: scale(1);
     }
     50% {
       opacity: 1;
-      transform: scale(1.1);
+      transform: scale(1.05);
     }
   }
 
-  @keyframes dataFlow {
+  @keyframes flightPath {
     0% {
-      transform: translateX(-100%);
-      opacity: 0;
-    }
-    50% {
-      opacity: 1;
+      stroke-dashoffset: 0;
+      opacity: 0.8;
     }
     100% {
-      transform: translateX(100%);
-      opacity: 0;
+      stroke-dashoffset: -50;
+      opacity: 0.8;
     }
   }
 
-  /* Enhanced Animation Classes */
-  .animate-cockpit-bootup {
-    animation: cockpitBootup 2s ease-out;
+  @keyframes navigationGrid {
+    0% {
+      transform: translate(0, 0);
+    }
+    100% {
+      transform: translate(40px, 40px);
+    }
   }
 
+  @keyframes cockpitBoot {
+    0% {
+      opacity: 0;
+      transform: scale(0.9) rotateX(10deg);
+      filter: blur(8px);
+    }
+    50% {
+      opacity: 0.7;
+      transform: scale(0.95) rotateX(5deg);
+      filter: blur(4px);
+    }
+    100% {
+      opacity: 1;
+      transform: scale(1) rotateX(0deg);
+      filter: blur(0px);
+    }
+  }
+
+  @keyframes professionalSlide {
+    0% {
+      opacity: 0;
+      transform: translateY(60px) rotateX(15deg) scale(0.95);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0) rotateX(0deg) scale(1);
+    }
+  }
+
+  /* Professional Animation Classes */
   .animate-radar-sweep {
-    animation: radarSweep 4s linear infinite;
+    animation: radarSweep 8s linear infinite;
   }
 
   .animate-hud-glow {
-    animation: hudGlow 2s ease-in-out infinite;
+    animation: hudGlow 3s ease-in-out infinite;
   }
 
-  .animate-float-3d {
-    animation: float3D 6s ease-in-out infinite;
+  .animate-system-pulse {
+    animation: systemPulse 2s ease-in-out infinite;
   }
 
-  .animate-neural-pulse {
-    animation: neuralPulse 2s ease-in-out infinite;
+  .animate-flight-path {
+    animation: flightPath 12s linear infinite;
   }
 
-  .animate-data-flow {
-    animation: dataFlow 3s ease-in-out infinite;
+  .animate-nav-grid {
+    animation: navigationGrid 20s linear infinite;
   }
 
-  .animate-cinematic-zoom {
-    animation: cinematicZoom 2s cubic-bezier(0.4, 0, 0.2, 1);
+  .animate-cockpit-boot {
+    animation: cockpitBoot 1.5s cubic-bezier(0.4, 0, 0.2, 1);
   }
 
-  .animate-radial-wipe {
-    animation: radialWipe 1.5s ease-out;
+  .animate-professional-slide {
+    animation: professionalSlide 1.2s cubic-bezier(0.4, 0, 0.2, 1);
   }
 
-  .animate-glitch {
-    animation: glitchEffect 0.3s ease-in-out;
-  }
-
-  .animate-hologram {
-    animation: hologramFlicker 3s ease-in-out infinite;
-  }
-
-  .animate-matrix-rain {
-    animation: matrixRain 4s linear infinite;
-  }
-
-  .animate-radar-pulse {
-    animation: radarPulse 3s ease-in-out infinite;
-  }
-
-  .animate-dash-flow {
-    animation: dashFlow 8s linear infinite;
-  }
-
-  .animate-dash-flow-reverse {
-    animation: dashFlowReverse 6s linear infinite;
-  }
-
-  .animate-waypoint-travel {
-    animation: waypointTravel 12s ease-in-out infinite;
-  }
-
-  /* Professional Scroll-triggered animations */
-  .scroll-trigger {
+  /* Professional Scroll Animations */
+  .scroll-reveal {
     opacity: 0;
-    transform: translateY(40px) rotateX(8deg) scale(0.95);
-    transition: all 1.2s cubic-bezier(0.23, 1, 0.32, 1);
-    transform-style: preserve-3d;
+    transform: translateY(50px) rotateX(10deg) scale(0.95);
+    transition: all 1s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   }
 
-  .scroll-trigger.visible {
+  .scroll-reveal.visible {
     opacity: 1;
     transform: translateY(0) rotateX(0deg) scale(1);
   }
 
   .scroll-slide-left {
     opacity: 0;
-    transform: translateX(-60px) rotateY(12deg) scale(0.9);
-    transition: all 1s cubic-bezier(0.23, 1, 0.32, 1);
-    transform-style: preserve-3d;
+    transform: translateX(-80px) rotateY(15deg);
+    transition: all 1s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   }
 
   .scroll-slide-left.visible {
     opacity: 1;
-    transform: translateX(0) rotateY(0deg) scale(1);
+    transform: translateX(0) rotateY(0deg);
   }
 
   .scroll-slide-right {
     opacity: 0;
-    transform: translateX(60px) rotateY(-12deg) scale(0.9);
-    transition: all 1s cubic-bezier(0.23, 1, 0.32, 1);
-    transform-style: preserve-3d;
+    transform: translateX(80px) rotateY(-15deg);
+    transition: all 1s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   }
 
   .scroll-slide-right.visible {
     opacity: 1;
-    transform: translateX(0) rotateY(0deg) scale(1);
+    transform: translateX(0) rotateY(0deg);
   }
 
-  .scroll-scale-3d {
-    opacity: 0;
-    transform: scale(0.85) rotateX(15deg) rotateY(8deg) translateZ(-40px);
-    transition: all 1.4s cubic-bezier(0.23, 1, 0.32, 1);
-    transform-style: preserve-3d;
+  /* Professional Spacing System */
+  .section-spacing {
+    @apply py-24 md:py-32;
   }
 
-  .scroll-scale-3d.visible {
-    opacity: 1;
-    transform: scale(1) rotateX(0deg) rotateY(0deg) translateZ(0px);
-  }
-
-  /* HUD Grid Overlay */
-  .hud-grid {
-    background-image: 
-      linear-gradient(rgba(0, 200, 255, 0.1) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(0, 200, 255, 0.1) 1px, transparent 1px);
-    background-size: 40px 40px;
-  }
-
-  /* Aviation Accent Colors */
-  .text-afterburner-orange {
-    color: #ff4500;
-    text-shadow: 0 0 10px rgba(255, 69, 0, 0.5);
-  }
-
-  .text-radar-green {
-    color: #00ff00;
-    text-shadow: 0 0 10px rgba(0, 255, 0, 0.5);
-  }
-
-  .text-electric-blue {
-    color: #00c8ff;
-    text-shadow: 0 0 10px rgba(0, 200, 255, 0.5);
-  }
-
-  .text-cockpit-amber {
-    color: #ffb000;
-    text-shadow: 0 0 10px rgba(255, 176, 0, 0.5);
-  }
-
-  .text-teal-primary {
-    color: #2e9896;
-    text-shadow: 0 0 10px rgba(46, 152, 150, 0.5);
-  }
-
-  /* Professional spacing */
-  .section-padding {
-    @apply py-20 md:py-32;
-  }
-
-  .container-width {
+  .container-pro {
     @apply max-w-7xl mx-auto px-6 md:px-8;
   }
 
-  /* Professional Card hover effects with subtle 3D */
-  .card-3d-hover {
+  /* Professional Card Hover */
+  .card-pro-hover {
     @apply transition-all duration-500;
     transform-style: preserve-3d;
-    perspective: 1000px;
   }
 
-  .card-3d-hover:hover {
-    transform: translateY(-12px) rotateX(5deg) rotateY(2deg) scale(1.02);
+  .card-pro-hover:hover {
+    transform: translateY(-8px) rotateX(5deg) scale(1.02);
     box-shadow: 
       0 20px 60px rgba(0, 0, 0, 0.3),
-      0 0 40px rgba(46, 152, 150, 0.2),
-      inset 0 1px 0 rgba(255, 255, 255, 0.1);
+      0 0 40px rgba(0, 174, 239, 0.2);
   }
 
-  /* Radial gradient utility */
-  .bg-gradient-radial {
-    background: radial-gradient(circle, var(--tw-gradient-stops));
+  /* HUD Grid Background */
+  .aviation-grid {
+    background-image: 
+      linear-gradient(rgba(0, 174, 239, 0.1) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0, 174, 239, 0.1) 1px, transparent 1px);
+    background-size: 60px 60px;
+    animation: navigationGrid 30s linear infinite;
+  }
+
+  /* Professional Color Classes */
+  .text-electric-blue {
+    color: hsl(var(--electric-blue));
+    text-shadow: 0 0 10px rgba(0, 174, 239, 0.4);
+  }
+
+  .text-radar-green {
+    color: hsl(var(--radar-green));
+    text-shadow: 0 0 10px rgba(66, 255, 144, 0.4);
+  }
+
+  .text-cockpit-amber {
+    color: hsl(var(--cockpit-amber));
+    text-shadow: 0 0 10px rgba(255, 176, 0, 0.4);
+  }
+
+  .text-teal-primary {
+    color: hsl(var(--teal-primary));
+    text-shadow: 0 0 10px rgba(46, 152, 150, 0.4);
   }
 }
