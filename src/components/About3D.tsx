@@ -1,63 +1,37 @@
 
 import React, { useRef, Suspense } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber';
-import { Box, Text } from '@react-three/drei';
 import * as THREE from 'three';
 
-const TimelineElement = ({ position, year, title, color }: { 
-  position: [number, number, number], 
-  year: string, 
-  title: string, 
-  color: string 
-}) => {
+const TimelineBox = ({ position, color }: { position: [number, number, number], color: string }) => {
   const meshRef = useRef<THREE.Mesh>(null);
   
   useFrame((state) => {
     if (meshRef.current) {
       meshRef.current.rotation.y = Math.sin(state.clock.elapsedTime + position[0]) * 0.1;
-      meshRef.current.position.y = position[1] + Math.sin(state.clock.elapsedTime * 0.5 + position[0]) * 0.1;
     }
   });
 
   return (
-    <group position={position}>
-      <Box ref={meshRef} args={[0.3, 0.3, 0.3]}>
-        <meshStandardMaterial color={color} />
-      </Box>
-      <Suspense fallback={null}>
-        <Text
-          position={[0, -0.5, 0]}
-          fontSize={0.1}
-          color="white"
-          anchorX="center"
-          anchorY="middle"
-        >
-          {year}
-        </Text>
-      </Suspense>
-    </group>
+    <mesh ref={meshRef} position={position}>
+      <boxGeometry args={[0.5, 0.5, 0.5]} />
+      <meshStandardMaterial color={color} />
+    </mesh>
   );
 };
 
 const Timeline3D = () => {
-  const timelineData = [
-    { year: '2018', title: 'Founded', color: '#3b82f6' },
-    { year: '2020', title: 'DGCA Certified', color: '#10b981' },
-    { year: '2022', title: 'AI Integration', color: '#f59e0b' },
-    { year: '2024', title: 'Global Expansion', color: '#8b5cf6' }
-  ];
-
+  const colors = ['#3b82f6', '#10b981', '#f59e0b', '#8b5cf6'];
+  
   return (
-    <Canvas camera={{ position: [0, 0, 5] }}>
-      <ambientLight intensity={0.5} />
-      <pointLight position={[10, 10, 10]} />
-      {timelineData.map((item, index) => (
-        <TimelineElement
-          key={item.year}
-          position={[index * 2 - 3, 0, 0]}
-          year={item.year}
-          title={item.title}
-          color={item.color}
+    <Canvas camera={{ position: [0, 0, 6] }}>
+      <ambientLight intensity={0.6} />
+      <pointLight position={[10, 10, 10]} intensity={0.8} />
+      {colors.map((color, index) => (
+        <TimelineBox
+          key={index}
+          position={[(index - 1.5) * 1.5, 0, 0]}
+          color={color}
         />
       ))}
     </Canvas>
@@ -89,7 +63,7 @@ const About3D = () => {
           <div className="h-96 slide-in-left">
             <Suspense fallback={
               <div className="flex items-center justify-center h-full">
-                <div className="animate-pulse text-blue-400">Loading Timeline...</div>
+                <div className="animate-pulse text-primary-blue">Loading...</div>
               </div>
             }>
               <Timeline3D />

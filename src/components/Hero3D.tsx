@@ -1,61 +1,25 @@
 
-import React, { useRef, useEffect, Suspense } from 'react';
+import React, { useRef, Suspense } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber';
-import { OrbitControls, Sphere, Box, Torus } from '@react-three/drei';
 import * as THREE from 'three';
 
-const AnimatedSphere = () => {
+const SimpleShape = ({ position, color }: { position: [number, number, number], color: string }) => {
   const meshRef = useRef<THREE.Mesh>(null);
   
   useFrame((state) => {
     if (meshRef.current) {
       meshRef.current.rotation.x = state.clock.elapsedTime * 0.2;
       meshRef.current.rotation.y = state.clock.elapsedTime * 0.3;
-      meshRef.current.position.y = Math.sin(state.clock.elapsedTime) * 0.1;
     }
   });
 
   return (
-    <Sphere ref={meshRef} args={[1, 32, 32]} position={[0, 0, 0]}>
-      <meshStandardMaterial 
-        color="#3b82f6" 
-        wireframe 
-        opacity={0.6} 
-        transparent 
-      />
-    </Sphere>
+    <mesh ref={meshRef} position={position}>
+      <boxGeometry args={[1, 1, 1]} />
+      <meshStandardMaterial color={color} wireframe transparent opacity={0.6} />
+    </mesh>
   );
 };
-
-const FloatingElements = () => {
-  const group = useRef<THREE.Group>(null);
-  
-  useFrame((state) => {
-    if (group.current) {
-      group.current.rotation.y = state.clock.elapsedTime * 0.1;
-    }
-  });
-
-  return (
-    <group ref={group}>
-      <Box args={[0.5, 0.5, 0.5]} position={[3, 0, 0]}>
-        <meshStandardMaterial color="#10b981" wireframe />
-      </Box>
-      <Torus args={[0.8, 0.2, 16, 32]} position={[-3, 0, 0]}>
-        <meshStandardMaterial color="#f59e0b" wireframe />
-      </Torus>
-      <Sphere args={[0.3, 16, 16]} position={[0, 3, 0]}>
-        <meshStandardMaterial color="#8b5cf6" wireframe />
-      </Sphere>
-    </group>
-  );
-};
-
-const LoadingFallback = () => (
-  <div className="flex items-center justify-center h-full">
-    <div className="animate-pulse text-blue-400">Loading 3D Scene...</div>
-  </div>
-);
 
 const Hero3D = () => {
   return (
@@ -63,25 +27,19 @@ const Hero3D = () => {
       {/* Grid Background */}
       <div className="absolute inset-0 grid-background opacity-20"></div>
       
-      {/* 3D Scene */}
+      {/* Simple 3D Scene */}
       <div className="absolute inset-0 z-0">
-        <Suspense fallback={<LoadingFallback />}>
-          <Canvas 
-            camera={{ position: [0, 0, 8], fov: 45 }}
-            onCreated={({ gl }) => {
-              gl.setClearColor('#0f172a');
-            }}
-          >
-            <ambientLight intensity={0.5} />
-            <pointLight position={[10, 10, 10]} intensity={1} />
-            <AnimatedSphere />
-            <FloatingElements />
-            <OrbitControls 
-              enableZoom={false} 
-              enablePan={false}
-              autoRotate
-              autoRotateSpeed={0.5}
-            />
+        <Suspense fallback={
+          <div className="flex items-center justify-center h-full">
+            <div className="animate-pulse text-primary-blue">Loading...</div>
+          </div>
+        }>
+          <Canvas camera={{ position: [0, 0, 6], fov: 45 }}>
+            <ambientLight intensity={0.6} />
+            <pointLight position={[10, 10, 10]} intensity={0.8} />
+            <SimpleShape position={[0, 0, 0]} color="#3b82f6" />
+            <SimpleShape position={[2, 1, -1]} color="#10b981" />
+            <SimpleShape position={[-2, -1, 1]} color="#f59e0b" />
           </Canvas>
         </Suspense>
       </div>
