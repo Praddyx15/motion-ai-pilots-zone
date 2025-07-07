@@ -3,7 +3,7 @@
 @tailwind components;
 @tailwind utilities;
 
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&family=Poppins:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&family=Poppins:wght@300;400;500;600;700&display=swap');
 
 @layer base {
   :root {
@@ -28,12 +28,10 @@
     --ring: 222.2 84% 4.9%;
     --radius: 0.5rem;
 
-    /* Professional Color Palette */
-    --primary-blue: 210 100% 56%;
-    --accent-blue: 200 100% 60%;
-    --success-green: 142 76% 36%;
-    --warning-amber: 43 96% 56%;
-    --neutral-gray: 210 11% 15%;
+    /* Custom Brand Colors */
+    --accent-teal: 180 54% 37%;
+    --dark-teal: 180 100% 13%;
+    --deep-dark: 180 100% 6%;
   }
 
   * {
@@ -43,25 +41,26 @@
   body {
     font-family: 'Poppins', sans-serif;
     line-height: 1.6;
-    background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #334155 100%);
+    background: linear-gradient(135deg, #001f1f 0%, #004443 100%);
     color: white;
     scroll-behavior: smooth;
+    min-height: 100vh;
   }
 
-  /* Professional Typography */
+  /* Typography */
   .heading-primary {
     font-family: 'Montserrat', sans-serif;
-    @apply text-4xl md:text-6xl font-bold leading-tight tracking-tight;
+    @apply text-4xl md:text-6xl font-bold leading-tight tracking-tight uppercase;
   }
 
   .heading-secondary {
     font-family: 'Montserrat', sans-serif;
-    @apply text-2xl md:text-4xl font-semibold leading-tight;
+    @apply text-2xl md:text-4xl font-semibold leading-tight uppercase;
   }
 
   .heading-tertiary {
     font-family: 'Montserrat', sans-serif;
-    @apply text-xl md:text-2xl font-medium leading-snug;
+    @apply text-xl md:text-2xl font-medium leading-snug uppercase;
   }
 
   .body-text {
@@ -74,33 +73,36 @@
     @apply text-sm md:text-base leading-relaxed;
   }
 
-  /* Professional Glass Effect */
+  /* Custom Components */
   .glass-panel {
-    background: rgba(255, 255, 255, 0.1);
+    background: rgba(46, 152, 150, 0.1);
     backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    border-radius: 16px;
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(46, 152, 150, 0.2);
+    border-radius: 12px;
+    box-shadow: 0 8px 32px rgba(0, 68, 67, 0.3);
   }
 
-  /* Professional Buttons */
   .btn-primary {
-    @apply bg-blue-600 hover:bg-blue-700 text-white font-medium px-8 py-3 rounded-lg transition-all duration-300;
+    @apply bg-gradient-to-r from-[#2e9896] to-[#004443] hover:from-[#3aa8a6] hover:to-[#005553] text-white font-medium px-8 py-3 rounded-lg transition-all duration-300;
     font-family: 'Montserrat', sans-serif;
-    box-shadow: 0 4px 15px rgba(59, 130, 246, 0.4);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    box-shadow: 0 4px 15px rgba(46, 152, 150, 0.4);
   }
 
   .btn-primary:hover {
     transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(59, 130, 246, 0.6);
+    box-shadow: 0 6px 20px rgba(46, 152, 150, 0.6);
   }
 
   .btn-secondary {
-    @apply bg-transparent border-2 border-blue-500 text-blue-400 hover:bg-blue-500 hover:text-white font-medium px-8 py-3 rounded-lg transition-all duration-300;
+    @apply bg-transparent border-2 border-[#2e9896] text-[#2e9896] hover:bg-[#2e9896] hover:text-white font-medium px-8 py-3 rounded-lg transition-all duration-300;
     font-family: 'Montserrat', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
   }
 
-  /* Professional Animations */
+  /* Animations */
   .fade-in {
     opacity: 0;
     transform: translateY(30px);
@@ -145,17 +147,17 @@
     transform: scale(1);
   }
 
-  /* Professional Hover Effects */
-  .hover-lift {
+  /* Hover Effects */
+  .hover-glow {
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   }
 
-  .hover-lift:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+  .hover-glow:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(46, 152, 150, 0.3);
   }
 
-  /* Professional Spacing */
+  /* Spacing */
   .section-padding {
     @apply py-16 md:py-24;
   }
@@ -164,11 +166,11 @@
     @apply max-w-7xl mx-auto px-6 md:px-8;
   }
 
-  /* Professional Grid Background */
-  .grid-background {
+  /* Tech Grid Background */
+  .tech-grid {
     background-image: 
-      linear-gradient(rgba(59, 130, 246, 0.1) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(59, 130, 246, 0.1) 1px, transparent 1px);
+      linear-gradient(rgba(46, 152, 150, 0.1) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(46, 152, 150, 0.1) 1px, transparent 1px);
     background-size: 50px 50px;
     animation: grid-move 20s linear infinite;
   }
@@ -178,49 +180,52 @@
     100% { background-position: 50px 50px; }
   }
 
-  /* Professional Glow Effects */
-  .glow-blue {
-    box-shadow: 0 0 20px rgba(59, 130, 246, 0.5);
+  /* Scanlines */
+  .scanlines {
+    position: relative;
+    overflow: hidden;
   }
 
-  .glow-green {
-    box-shadow: 0 0 20px rgba(34, 197, 94, 0.5);
+  .scanlines::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(
+      transparent 0%,
+      rgba(46, 152, 150, 0.03) 50%,
+      transparent 100%
+    );
+    background-size: 100% 4px;
+    animation: scanlines 2s linear infinite;
+    pointer-events: none;
   }
 
-  .glow-amber {
-    box-shadow: 0 0 20px rgba(245, 158, 11, 0.5);
+  @keyframes scanlines {
+    0% { transform: translateY(-100%); }
+    100% { transform: translateY(100vh); }
   }
 
   /* Color Utilities */
-  .text-primary-blue {
-    color: hsl(var(--primary-blue));
+  .text-accent-teal {
+    color: #2e9896;
   }
 
-  .text-accent-blue {
-    color: hsl(var(--accent-blue));
+  .text-dark-teal {
+    color: #004443;
   }
 
-  .text-success-green {
-    color: hsl(var(--success-green));
+  .bg-accent-teal {
+    background-color: #2e9896;
   }
 
-  .text-warning-amber {
-    color: hsl(var(--warning-amber));
+  .bg-dark-teal {
+    background-color: #004443;
   }
 
-  .bg-primary-blue {
-    background-color: hsl(var(--primary-blue));
-  }
-
-  .bg-accent-blue {
-    background-color: hsl(var(--accent-blue));
-  }
-
-  .bg-success-green {
-    background-color: hsl(var(--success-green));
-  }
-
-  .bg-warning-amber {
-    background-color: hsl(var(--warning-amber));
+  .bg-gradient-brand {
+    background: linear-gradient(135deg, #2e9896 0%, #004443 100%);
   }
 }

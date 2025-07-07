@@ -1,170 +1,118 @@
 
-import React, { useState, useEffect } from 'react';
-import { Award, MapPin, Users, Calendar, Zap, Target } from 'lucide-react';
+import React from 'react';
 
 const AboutSection = () => {
-  const [timelineActive, setTimelineActive] = useState(false);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setTimelineActive(true);
-          }
-        });
-      },
-      { threshold: 0.2 }
-    );
-
-    const timelineElement = document.querySelector('.timeline-container');
-    if (timelineElement) {
-      observer.observe(timelineElement);
-    }
-
-    return () => observer.disconnect();
-  }, []);
-
-  const timelineEvents = [
-    {
-      year: '2018',
-      title: 'COMPANY FOUNDED',
-      description: 'Sixty Motion Systems established with vision for advanced aviation training',
-      icon: Calendar,
-      color: 'electric-blue'
-    },
-    {
-      year: '2020',
-      title: 'DGCA CERTIFICATION',
-      description: 'First Level D flight simulator certified by DGCA India',
-      icon: Award,
-      color: 'radar-green'
-    },
-    {
-      year: '2022',
-      title: 'AI INTEGRATION',
-      description: 'Launched edge-AI pilot analytics and training optimization platform',
-      icon: Zap,
-      color: 'cockpit-amber'
-    },
-    {
-      year: '2024',
-      title: 'GLOBAL EXPANSION',
-      description: 'FAA certification achieved with international partnership network',
-      icon: Target,
-      color: 'electric-blue'
-    }
-  ];
-
-  const companyStats = [
-    { value: '45+', label: 'GLOBAL INSTALLATIONS', color: 'electric-blue' },
-    { value: '2,500+', label: 'PILOT CERTIFICATIONS', color: 'radar-green' },
-    { value: '50,000+', label: 'TRAINING HOURS', color: 'cockpit-amber' },
-    { value: '15+', label: 'COUNTRIES SERVED', color: 'electric-blue' }
-  ];
-
   return (
-    <section className="section-spacing relative overflow-hidden">
-      {/* Section Background Effects */}
-      <div className="absolute inset-0">
-        <div className="absolute top-1/4 left-0 w-full h-px bg-gradient-to-r from-transparent via-electric-blue/30 to-transparent"></div>
-        <div className="absolute bottom-1/4 right-0 w-full h-px bg-gradient-to-l from-transparent via-radar-green/30 to-transparent"></div>
+    <section className="section-padding bg-gradient-to-r from-[#004443] to-[#002e2d] relative overflow-hidden">
+      {/* Background Pattern */}
+      <div className="absolute inset-0 opacity-5">
+        <div className="tech-grid h-full"></div>
       </div>
-
-      <div className="container-pro relative z-10">
-        {/* Section Header */}
-        <div className="text-center mb-20 scroll-reveal">
-          <h2 className="heading-xl mb-6">
-            <span className="text-electric-blue">OUR</span>{' '}
-            <span className="text-white">JOURNEY</span>
-          </h2>
-          <p className="body-lg max-w-4xl mx-auto mb-8 text-white/80">
-            From pioneering vision to industry leadership in aviation training technology.
-            <br />
-            <span className="text-electric-blue font-semibold">Certified. Proven. Trusted globally.</span>
-          </p>
-          <div className="w-32 h-1 bg-gradient-to-r from-electric-blue to-radar-green mx-auto"></div>
-        </div>
-
-        {/* Professional Timeline */}
-        <div className="timeline-container relative mb-24">
-          {/* Central Timeline Axis */}
-          <div className="absolute left-1/2 -translate-x-1/2 w-0.5 h-full bg-gradient-to-b from-electric-blue via-radar-green to-cockpit-amber opacity-60"></div>
-          
-          {timelineEvents.map((event, index) => (
-            <div
-              key={event.year}
-              className={`relative flex items-center mb-20 last:mb-0 transition-all duration-1000 ${
-                timelineActive ? 'opacity-100 translate-x-0' : 'opacity-0'
-              } ${
-                index % 2 === 0 ? 'translate-x-[-30px]' : 'translate-x-[30px]'
-              }`}
-              style={{ animationDelay: `${index * 0.4}s` }}
-            >
-              {/* Timeline Content */}
-              <div className={`w-1/2 ${index % 2 === 0 ? 'pr-12 text-right' : 'pl-12 text-left order-2'}`}>
-                <div className="glass-cockpit p-8 card-pro-hover stagger-child">
-                  <div className={`text-3xl font-bold text-${event.color} mb-3 heading-md`}>
-                    {event.year}
-                  </div>
-                  <h3 className="heading-sm mb-4 text-white">{event.title}</h3>
-                  <p className="body-md text-white/70 leading-relaxed">{event.description}</p>
-                </div>
-              </div>
-
-              {/* Timeline Node */}
-              <div className="absolute left-1/2 -translate-x-1/2 w-20 h-20 glass-hud rounded-full flex items-center justify-center animate-hud-glow z-10">
-                <div className={`w-16 h-16 bg-gradient-to-br from-${event.color} to-${event.color}/60 rounded-full flex items-center justify-center border-2 border-${event.color}/40`}>
-                  {React.createElement(event.icon, { className: "w-8 h-8 text-white" })}
-                </div>
+      
+      <div className="container-width">
+        <div className="grid lg:grid-cols-2 gap-16 items-center">
+          {/* Mission Content */}
+          <div className="slide-in-left">
+            <h2 className="heading-secondary mb-6 text-white">
+              Our <span className="text-accent-teal">Mission</span>
+            </h2>
+            
+            <div className="space-y-6">
+              <p className="body-text text-gray-300 leading-relaxed">
+                We are pioneers in aviation simulation technology, dedicated to revolutionizing 
+                pilot training through precision engineering and cutting-edge artificial intelligence.
+              </p>
+              
+              <p className="body-text text-gray-300 leading-relaxed">
+                Our advanced motion platforms and immersive training environments provide 
+                unparalleled realism, enabling pilots to master complex flight scenarios 
+                in a safe, controlled environment.
+              </p>
+              
+              <div className="glass-panel p-6 border-l-4 border-accent-teal">
+                <h3 className="heading-tertiary text-accent-teal mb-3">
+                  Innovation Excellence
+                </h3>
+                <p className="body-small text-gray-300">
+                  Certified by aviation authorities worldwide, our simulators meet 
+                  the highest standards for professional pilot training and certification.
+                </p>
               </div>
             </div>
-          ))}
-        </div>
-
-        {/* Company Performance Metrics */}
-        <div className="scroll-reveal">
-          <div className="text-center mb-12">
-            <h3 className="heading-lg mb-4">
-              <span className="text-radar-green">PERFORMANCE</span>{' '}
-              <span className="text-white">METRICS</span>
-            </h3>
-            <div className="w-24 h-1 bg-gradient-to-r from-radar-green to-electric-blue mx-auto"></div>
+            
+            <div className="mt-8 flex flex-col sm:flex-row gap-4">
+              <button className="btn-primary">
+                Learn More
+              </button>
+              <button className="btn-secondary">
+                Contact Us
+              </button>
+            </div>
           </div>
-          
-          <div className="grid md:grid-cols-4 gap-8">
-            {companyStats.map((stat, index) => (
-              <div key={index} className="glass-cockpit p-8 text-center card-pro-hover stagger-child">
-                <div className={`text-5xl font-bold text-${stat.color} mb-3 heading-xl`}>
-                  {stat.value}
+
+          {/* Visual Element */}
+          <div className="slide-in-right">
+            <div className="relative">
+              {/* Blueprint-style Visual */}
+              <div className="glass-panel p-8 h-96 relative overflow-hidden">
+                <div className="absolute inset-0 opacity-20">
+                  {/* Simulated blueprint lines */}
+                  <svg className="w-full h-full" viewBox="0 0 400 300">
+                    {/* Aircraft outline */}
+                    <path
+                      d="M200 50 L350 150 L320 180 L200 160 L80 180 L50 150 L200 50 Z"
+                      stroke="#2e9896"
+                      strokeWidth="2"
+                      fill="none"
+                      className="animate-pulse"
+                    />
+                    
+                    {/* Cockpit */}
+                    <circle
+                      cx="200"
+                      cy="120"
+                      r="30"
+                      stroke="#2e9896"
+                      strokeWidth="1"
+                      fill="none"
+                      className="animate-pulse"
+                      style={{ animationDelay: '0.5s' }}
+                    />
+                    
+                    {/* Technical lines */}
+                    <line x1="50" y1="50" x2="350" y2="50" stroke="#004443" strokeWidth="1" opacity="0.5" />
+                    <line x1="50" y1="100" x2="350" y2="100" stroke="#004443" strokeWidth="1" opacity="0.5" />
+                    <line x1="50" y1="150" x2="350" y2="150" stroke="#004443" strokeWidth="1" opacity="0.5" />
+                    <line x1="50" y1="200" x2="350" y2="200" stroke="#004443" strokeWidth="1" opacity="0.5" />
+                    
+                    <line x1="100" y1="20" x2="100" y2="280" stroke="#004443" strokeWidth="1" opacity="0.5" />
+                    <line x1="200" y1="20" x2="200" y2="280" stroke="#004443" strokeWidth="1" opacity="0.5" />
+                    <line x1="300" y1="20" x2="300" y2="280" stroke="#004443" strokeWidth="1" opacity="0.5" />
+                  </svg>
                 </div>
-                <div className="tech-mono text-white/60 uppercase tracking-wider text-sm">
-                  {stat.label}
+                
+                <div className="relative z-10 h-full flex items-center justify-center">
+                  <div className="text-center">
+                    <h4 className="heading-tertiary text-accent-teal mb-4">
+                      Precision Engineering
+                    </h4>
+                    <p className="body-small text-gray-300">
+                      Every component designed for maximum accuracy and reliability
+                    </p>
+                  </div>
                 </div>
-                <div className={`mt-4 w-full h-px bg-gradient-to-r from-transparent via-${stat.color}/40 to-transparent`}></div>
               </div>
-            ))}
-          </div>
-        </div>
-
-        {/* Mission Statement */}
-        <div className="mt-24 text-center scroll-reveal">
-          <div className="glass-cockpit p-12 max-w-4xl mx-auto">
-            <h3 className="heading-lg mb-6">
-              <span className="text-cockpit-amber">MISSION</span>{' '}
-              <span className="text-white">STATEMENT</span>
-            </h3>
-            <p className="body-lg text-white/80 leading-relaxed mb-6">
-              To revolutionize aviation training through cutting-edge simulation technology, 
-              artificial intelligence, and uncompromising safety standards.
-            </p>
-            <div className="flex items-center justify-center space-x-4">
-              <div className="w-2 h-2 bg-electric-blue rounded-full animate-system-pulse"></div>
-              <span className="tech-mono text-electric-blue">PRECISION ENGINEERING</span>
-              <div className="w-2 h-2 bg-radar-green rounded-full animate-system-pulse"></div>
-              <span className="tech-mono text-radar-green">ADVANCED AI</span>
-              <div className="w-2 h-2 bg-cockpit-amber rounded-full animate-system-pulse"></div>
-              <span className="tech-mono text-cockpit-amber">GLOBAL CERTIFICATION</span>
+              
+              {/* Floating Stats */}
+              <div className="absolute -top-4 -right-4 glass-panel p-4">
+                <div className="text-2xl font-bold text-accent-teal">99.7%</div>
+                <div className="text-xs text-gray-300 uppercase">Accuracy</div>
+              </div>
+              
+              <div className="absolute -bottom-4 -left-4 glass-panel p-4">
+                <div className="text-2xl font-bold text-accent-teal">50+</div>
+                <div className="text-xs text-gray-300 uppercase">Countries</div>
+              </div>
             </div>
           </div>
         </div>

@@ -3,43 +3,60 @@ import React, { useRef, Suspense } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber';
 import * as THREE from 'three';
 
-const SimpleShape = ({ position, color }: { position: [number, number, number], color: string }) => {
+const TechGrid = ({ position, size }: { position: [number, number, number], size: number }) => {
   const meshRef = useRef<THREE.Mesh>(null);
   
   useFrame((state) => {
     if (meshRef.current) {
-      meshRef.current.rotation.x = state.clock.elapsedTime * 0.2;
-      meshRef.current.rotation.y = state.clock.elapsedTime * 0.3;
+      meshRef.current.rotation.z = state.clock.elapsedTime * 0.1;
+      meshRef.current.material.opacity = 0.3 + Math.sin(state.clock.elapsedTime) * 0.1;
     }
   });
 
   return (
     <mesh ref={meshRef} position={position}>
-      <boxGeometry args={[1, 1, 1]} />
-      <meshStandardMaterial color={color} wireframe transparent opacity={0.6} />
+      <planeGeometry args={[size, size]} />
+      <meshBasicMaterial 
+        color="#2e9896" 
+        wireframe 
+        transparent 
+        opacity={0.2}
+      />
     </mesh>
+  );
+};
+
+const FloatingElements = () => {
+  const groupRef = useRef<THREE.Group>(null);
+  
+  useFrame((state) => {
+    if (groupRef.current) {
+      groupRef.current.rotation.y = state.clock.elapsedTime * 0.05;
+    }
+  });
+
+  return (
+    <group ref={groupRef}>
+      <TechGrid position={[0, 0, -5]} size={20} />
+      <TechGrid position={[0, 0, -10]} size={30} />
+      <TechGrid position={[0, 0, -15]} size={40} />
+    </group>
   );
 };
 
 const Hero3D = () => {
   return (
-    <section className="min-h-screen flex items-center justify-center relative overflow-hidden">
-      {/* Grid Background */}
-      <div className="absolute inset-0 grid-background opacity-20"></div>
+    <section className="min-h-screen flex items-center justify-center relative overflow-hidden scanlines">
+      {/* Tech Grid Background */}
+      <div className="absolute inset-0 tech-grid opacity-10"></div>
       
-      {/* Simple 3D Scene */}
+      {/* 3D Background Elements */}
       <div className="absolute inset-0 z-0">
-        <Suspense fallback={
-          <div className="flex items-center justify-center h-full">
-            <div className="animate-pulse text-primary-blue">Loading...</div>
-          </div>
-        }>
-          <Canvas camera={{ position: [0, 0, 6], fov: 45 }}>
-            <ambientLight intensity={0.6} />
-            <pointLight position={[10, 10, 10]} intensity={0.8} />
-            <SimpleShape position={[0, 0, 0]} color="#3b82f6" />
-            <SimpleShape position={[2, 1, -1]} color="#10b981" />
-            <SimpleShape position={[-2, -1, 1]} color="#f59e0b" />
+        <Suspense fallback={null}>
+          <Canvas camera={{ position: [0, 0, 10], fov: 45 }}>
+            <ambientLight intensity={0.3} />
+            <pointLight position={[10, 10, 10]} intensity={0.5} color="#2e9896" />
+            <FloatingElements />
           </Canvas>
         </Suspense>
       </div>
@@ -47,14 +64,14 @@ const Hero3D = () => {
       {/* Content */}
       <div className="container-width relative z-10 text-center">
         <div className="fade-in">
-          <h1 className="heading-primary mb-6">
-            <span className="text-primary-blue">SIXTY MOTION</span>
+          <h1 className="heading-primary mb-6 text-white">
+            Immersive Precision.
             <br />
-            <span className="text-white">SYSTEMS</span>
+            <span className="text-accent-teal">Engineered for Flight.</span>
           </h1>
           
           <p className="body-text mb-8 max-w-2xl mx-auto text-gray-300">
-            Next-generation flight simulation technology powered by advanced AI and precision engineering.
+            Experience the future of simulator technology with cutting-edge motion systems and AI-powered training analytics.
           </p>
           
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
@@ -62,11 +79,14 @@ const Hero3D = () => {
               Explore Simulators
             </button>
             <button className="btn-secondary">
-              Learn More
+              Watch Demo
             </button>
           </div>
         </div>
       </div>
+
+      {/* Gradient Bottom Border */}
+      <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-accent-teal to-transparent"></div>
     </section>
   );
 };
