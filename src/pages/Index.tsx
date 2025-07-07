@@ -1,157 +1,137 @@
 
 import React, { useEffect } from 'react';
-import AircraftNavWheel from '../components/AircraftNavWheel';
-import EnhancedAviationBackground from '../components/EnhancedAviationBackground';
-import EnhancedHeroSection from '../components/EnhancedHeroSection';
-import Enhanced3DSimulator from '../components/Enhanced3DSimulator';
-import AITechSection from '../components/AITechSection';
-import PlatformSection from '../components/PlatformSection';
-import AboutSection from '../components/AboutSection';
-import CockpitContactForm from '../components/CockpitContactForm';
-import ScrollAnimations from '../components/ScrollAnimations';
+import Navigation from '../components/Navigation';
+import Hero3D from '../components/Hero3D';
+import FeatureCard from '../components/FeatureCard';
+import About3D from '../components/About3D';
+import { Monitor, Cpu, Zap, Shield } from 'lucide-react';
 
 const Index = () => {
   useEffect(() => {
-    // Professional scroll-linked animation system
-    const handleProfessionalScroll = () => {
-      const scrolled = window.pageYOffset;
-      const rate = scrolled * -0.1;
-      
-      // Advanced parallax with professional easing
-      const parallaxElements = document.querySelectorAll('.parallax-layer');
-      parallaxElements.forEach((element, index) => {
-        const speed = (index + 1) * 0.08;
-        const rotation = scrolled * 0.01;
-        (element as HTMLElement).style.transform = `translateY(${scrolled * speed}px) rotateX(${rotation}deg)`;
-      });
-
-      // Professional section transitions with stagger
-      const sections = document.querySelectorAll('section');
-      sections.forEach((section, index) => {
-        const rect = section.getBoundingClientRect();
-        const progress = Math.max(0, Math.min(1, (window.innerHeight - rect.top) / (window.innerHeight * 0.8)));
-        
-        if (progress > 0.1) {
-          section.style.opacity = '1';
-          section.style.transform = `translateY(0px) rotateX(0deg) scale(1)`;
-        } else {
-          section.style.opacity = '0.8';
-          section.style.transform = `translateY(30px) rotateX(2deg) scale(0.98)`;
-        }
-      });
-    };
-
-    // Enhanced intersection observer for professional reveals
-    const professionalObserver = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-          
-          // Staggered child animations
-          const children = entry.target.querySelectorAll('.stagger-child');
-          children.forEach((child, index) => {
-            setTimeout(() => {
-              child.classList.add('visible');
-            }, index * 150);
-          });
-        }
-      });
-    }, {
-      threshold: 0.15,
-      rootMargin: '0px 0px -100px 0px'
-    });
-
-    // Professional smooth scrolling with easing
-    const handleSmoothScroll = (e: Event) => {
-      const target = e.target as HTMLAnchorElement;
-      if (target.hash) {
-        e.preventDefault();
-        const element = document.querySelector(target.hash);
-        if (element) {
-          const startPosition = window.pageYOffset;
-          const targetPosition = (element as HTMLElement).offsetTop - 80;
-          const distance = targetPosition - startPosition;
-          const duration = Math.abs(distance) / 2 + 800;
-          let start: number | null = null;
-
-          const professionalEasing = (t: number): number => {
-            return t < 0.5 ? 8 * t * t * t * t : 1 - 8 * (--t) * t * t * t;
-          };
-
-          const animation = (currentTime: number) => {
-            if (start === null) start = currentTime;
-            const timeElapsed = currentTime - start;
-            const progress = Math.min(timeElapsed / duration, 1);
-            const ease = professionalEasing(progress);
-            
-            window.scrollTo(0, startPosition + distance * ease);
-            
-            if (timeElapsed < duration) {
-              requestAnimationFrame(animation);
-            }
-          };
-
-          requestAnimationFrame(animation);
-        }
-      }
-    };
-
-    // Observe elements for professional animations
-    const animatedElements = document.querySelectorAll(
-      '.scroll-reveal, .scroll-slide-left, .scroll-slide-right, .card-pro-hover'
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+          }
+        });
+      },
+      { threshold: 0.1, rootMargin: '0px 0px -50px 0px' }
     );
-    animatedElements.forEach((el) => professionalObserver.observe(el));
 
-    const links = document.querySelectorAll('a[href^="#"]');
-    links.forEach(link => {
-      link.addEventListener('click', handleSmoothScroll);
-    });
+    const animatedElements = document.querySelectorAll(
+      '.fade-in, .slide-in-left, .slide-in-right, .scale-in'
+    );
 
-    window.addEventListener('scroll', handleProfessionalScroll);
-    handleProfessionalScroll();
+    animatedElements.forEach((el) => observer.observe(el));
 
-    return () => {
-      links.forEach(link => {
-        link.removeEventListener('click', handleSmoothScroll);
-      });
-      window.removeEventListener('scroll', handleProfessionalScroll);
-      professionalObserver.disconnect();
-    };
+    return () => observer.disconnect();
   }, []);
 
   return (
-    <div className="min-h-screen relative overflow-x-hidden">
-      <EnhancedAviationBackground />
-      <AircraftNavWheel />
+    <div className="min-h-screen relative">
+      <Navigation />
       
-      {/* Main Content with Professional Layout */}
-      <div className="relative z-10">
-        <section id="home" className="section-spacing">
-          <EnhancedHeroSection />
-        </section>
-        
-        <section id="simulator" className="section-spacing">
-          <Enhanced3DSimulator />
-        </section>
-        
-        <section id="ai-tech" className="section-spacing">
-          <AITechSection />
-        </section>
-        
-        <section id="platform" className="section-spacing">
-          <PlatformSection />
-        </section>
-        
-        <section id="about" className="section-spacing">
-          <AboutSection />
-        </section>
-        
-        <section id="contact" className="section-spacing">
-          <CockpitContactForm />
-        </section>
-      </div>
-      
-      <ScrollAnimations />
+      {/* Hero Section */}
+      <section id="home">
+        <Hero3D />
+      </section>
+
+      {/* Features Section */}
+      <section id="simulator" className="section-padding">
+        <div className="container-width">
+          <div className="text-center mb-16">
+            <h2 className="heading-secondary mb-6 fade-in">
+              <span className="text-white">Advanced</span> <span className="text-primary-blue">Technology</span>
+            </h2>
+            <p className="body-text text-gray-300 max-w-2xl mx-auto fade-in">
+              Experience the future of flight simulation with our cutting-edge technology platform.
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+            <FeatureCard
+              icon={Monitor}
+              title="Level D Simulators"
+              description="FAA certified full-flight simulators with 6DOF motion systems."
+              color="blue"
+            />
+            <FeatureCard
+              icon={Cpu}
+              title="AI Analytics"
+              description="Real-time pilot performance analysis and training optimization."
+              color="green"
+            />
+            <FeatureCard
+              icon={Zap}
+              title="Motion Systems"
+              description="Advanced hydraulic motion platforms for realistic flight dynamics."
+              color="amber"
+            />
+            <FeatureCard
+              icon={Shield}
+              title="Safety First"
+              description="Comprehensive safety protocols and emergency training scenarios."
+              color="purple"
+            />
+          </div>
+        </div>
+      </section>
+
+      {/* AI Tech Section */}
+      <section id="ai-tech" className="section-padding bg-gray-900/50">
+        <div className="container-width">
+          <div className="text-center">
+            <h2 className="heading-secondary mb-6 fade-in">
+              <span className="text-primary-blue">Artificial Intelligence</span>
+            </h2>
+            <p className="body-text text-gray-300 max-w-3xl mx-auto fade-in">
+              Our AI-powered training platform analyzes pilot performance in real-time, 
+              providing personalized feedback and adaptive training scenarios.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* Platform Section */}
+      <section id="platform" className="section-padding">
+        <div className="container-width">
+          <div className="text-center">
+            <h2 className="heading-secondary mb-6 fade-in">
+              <span className="text-white">Training</span> <span className="text-primary-blue">Platform</span>
+            </h2>
+            <p className="body-text text-gray-300 max-w-3xl mx-auto fade-in">
+              Comprehensive training management system with progress tracking, 
+              certification management, and detailed analytics.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* About Section */}
+      <About3D />
+
+      {/* Contact Section */}
+      <section id="contact" className="section-padding bg-gray-900/50">
+        <div className="container-width">
+          <div className="text-center">
+            <h2 className="heading-secondary mb-6 fade-in">
+              <span className="text-white">Get in</span> <span className="text-primary-blue">Touch</span>
+            </h2>
+            <p className="body-text text-gray-300 max-w-2xl mx-auto mb-8 fade-in">
+              Ready to transform your pilot training program? Contact us to learn more about our solutions.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center fade-in">
+              <button className="btn-primary">
+                Schedule Demo
+              </button>
+              <button className="btn-secondary">
+                Request Quote
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
     </div>
   );
 };
