@@ -1,5 +1,5 @@
 
-import React, { useRef, useEffect } from 'react';
+import React, { useRef, useEffect, Suspense } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber';
 import { OrbitControls, Sphere, Box, Torus } from '@react-three/drei';
 import * as THREE from 'three';
@@ -51,6 +51,12 @@ const FloatingElements = () => {
   );
 };
 
+const LoadingFallback = () => (
+  <div className="flex items-center justify-center h-full">
+    <div className="animate-pulse text-blue-400">Loading 3D Scene...</div>
+  </div>
+);
+
 const Hero3D = () => {
   return (
     <section className="min-h-screen flex items-center justify-center relative overflow-hidden">
@@ -59,18 +65,25 @@ const Hero3D = () => {
       
       {/* 3D Scene */}
       <div className="absolute inset-0 z-0">
-        <Canvas camera={{ position: [0, 0, 8], fov: 45 }}>
-          <ambientLight intensity={0.5} />
-          <pointLight position={[10, 10, 10]} intensity={1} />
-          <AnimatedSphere />
-          <FloatingElements />
-          <OrbitControls 
-            enableZoom={false} 
-            enablePan={false}
-            autoRotate
-            autoRotateSpeed={0.5}
-          />
-        </Canvas>
+        <Suspense fallback={<LoadingFallback />}>
+          <Canvas 
+            camera={{ position: [0, 0, 8], fov: 45 }}
+            onCreated={({ gl }) => {
+              gl.setClearColor('#0f172a');
+            }}
+          >
+            <ambientLight intensity={0.5} />
+            <pointLight position={[10, 10, 10]} intensity={1} />
+            <AnimatedSphere />
+            <FloatingElements />
+            <OrbitControls 
+              enableZoom={false} 
+              enablePan={false}
+              autoRotate
+              autoRotateSpeed={0.5}
+            />
+          </Canvas>
+        </Suspense>
       </div>
 
       {/* Content */}

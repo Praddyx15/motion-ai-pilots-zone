@@ -8,6 +8,8 @@ import { Monitor, Cpu, Zap, Shield } from 'lucide-react';
 
 const Index = () => {
   useEffect(() => {
+    console.log('Index component mounted');
+    
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -19,13 +21,19 @@ const Index = () => {
       { threshold: 0.1, rootMargin: '0px 0px -50px 0px' }
     );
 
-    const animatedElements = document.querySelectorAll(
-      '.fade-in, .slide-in-left, .slide-in-right, .scale-in'
-    );
+    // Add a small delay to ensure DOM is ready
+    const timer = setTimeout(() => {
+      const animatedElements = document.querySelectorAll(
+        '.fade-in, .slide-in-left, .slide-in-right, .scale-in'
+      );
+      console.log('Found animated elements:', animatedElements.length);
+      animatedElements.forEach((el) => observer.observe(el));
+    }, 100);
 
-    animatedElements.forEach((el) => observer.observe(el));
-
-    return () => observer.disconnect();
+    return () => {
+      observer.disconnect();
+      clearTimeout(timer);
+    };
   }, []);
 
   return (
