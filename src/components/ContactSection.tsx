@@ -15,15 +15,20 @@ const ContactSection = () => {
           
           <div className="glass-panel p-8 max-w-2xl mx-auto mb-12">
             <h3 className="heading-tertiary text-white mb-6">
-              Sixty Motion
+              Sixty Motion System Pvt Ltd
             </h3>
             
             <div className="space-y-4 text-left">
               <div className="flex items-start space-x-4">
                 <MapPin className="w-5 h-5 text-[#2e9896] mt-1 flex-shrink-0" />
-                <p className="body-small text-gray-200">
-                  2nd Floor, Property No. 44, Above Madame Tussauds, Regal Building, Connaught Place, New Delhi – 110001
-                </p>
+                <div>
+                  <p className="body-small text-gray-200">
+                    2nd Floor, Property No. 44, Above Madame Tussauds, Regal Building, Connaught Place, New Delhi – 110001
+                  </p>
+                  <p className="body-small text-gray-200 mt-1">
+                    Alternative: DLF Cyberhub, Tower 10 A, Gurugram, 122022
+                  </p>
+                </div>
               </div>
               
               <div className="flex items-center space-x-4">
@@ -35,9 +40,14 @@ const ContactSection = () => {
               
               <div className="flex items-center space-x-4">
                 <Mail className="w-5 h-5 text-[#2e9896]" />
-                <p className="body-small text-gray-200">
-                  info@sixtymotion.com
-                </p>
+                <div>
+                  <p className="body-small text-gray-200">
+                    info@sixtymotion.com
+                  </p>
+                  <p className="body-small text-gray-200">
+                    www.sixtymotion.com
+                  </p>
+                </div>
               </div>
             </div>
           </div>
@@ -45,7 +55,8 @@ const ContactSection = () => {
         
         <div className="border-t border-white/20 pt-8 text-center">
           <p className="body-small text-gray-200">
-            © Copyright 2024. All Rights Reserved.
+            © Copyright 2024. All Rights Reserved.<br />
+            Sixty Motion System Pvt Ltd
           </p>
         </div>
       </div>

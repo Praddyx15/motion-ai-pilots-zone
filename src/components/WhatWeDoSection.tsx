@@ -7,17 +7,17 @@ const WhatWeDoSection = () => {
     {
       icon: Brain,
       title: 'Advanced AI-driven Flight Simulators',
-      description: 'We design and manufacture high-fidelity, AI-powered Full Flight Simulators for Airbus and Boeing models.'
+      description: 'Design and manufacture high-fidelity, AI-powered Full Flight Simulators for Airbus and Boeing models with world\'s first AI-powered FFS technology.'
     },
     {
       icon: Settings,
       title: 'Customized Solutions',
-      description: 'Tailored simulation solutions to meet the specific needs of ATO\'s and airlines.'
+      description: 'Tailored simulation solutions for ATOs, airlines, and defense sector including fighter jets, helicopters, and transport aircraft with DGCA, IAF, and HAL compliance.'
     },
     {
       icon: Cpu,
-      title: 'Cutting-Edge Technology',
-      description: 'Integration of the latest technology to ensure the most realistic flight experience.'
+      title: 'Cutting-Edge Technology Integration',
+      description: 'Latest technology integration including AI-powered training systems, Mixed Reality (MR) and Augmented Reality (AR) technologies for realistic flight experiences.'
     }
   ];
 

@@ -35,11 +35,11 @@ const CollaborationSection = () => {
           </h3>
           
           <p className="body-text text-gray-300 mb-8 fade-in text-lg leading-relaxed max-w-4xl mx-auto">
-            Discover the strong network of industry collaborations and partnerships that has brought us where we are today. We are proud to work with leading aviation organizations, technology providers, and educational institutions to shape the future of aviation education.
+            Discover our strong network of industry collaborations with leading aviation organizations, aircraft manufacturers, defense organizations, technology providers, and educational institutions. We partner with Aircraft OEMs, airlines, and defense sector clients to deliver cutting-edge simulation solutions.
           </p>
           
           <p className="body-text text-accent-teal mb-12 fade-in text-lg font-medium">
-            Interested in our simulation products or exploring partnership opportunities? Reach out to our sales team.
+            Interested in our AI-powered simulation products, technology collaboration, or partnership opportunities? Reach out to our team for simulation product partnerships and training program development.
           </p>
         </div>
 

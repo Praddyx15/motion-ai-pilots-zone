@@ -108,57 +108,99 @@ const SimulatorCapsule = () => {
         {legs}
       </group>
       
-      {/* Main Simulator Capsule */}
-      <group ref={capsuleRef} position={[0, 4, 0]}>
-        {/* Main capsule body */}
-        <mesh>
-          <capsuleGeometry args={[1.8, 3, 8, 16]} />
-          <meshBasicMaterial 
-            color="#ffffff" 
-            wireframe 
-            transparent 
-            opacity={0.9} 
-          />
-        </mesh>
-        
-        {/* Cockpit window frame */}
-        <mesh position={[1.6, 0.5, 0]} rotation={[0, 0, Math.PI / 2]}>
-          <boxGeometry args={[1.2, 0.1, 2]} />
-          <meshBasicMaterial color="#ffffff" wireframe />
-        </mesh>
-        
-        {/* Door frame */}
-        <mesh position={[0, -0.5, 1.7]}>
-          <boxGeometry args={[1, 2, 0.1]} />
-          <meshBasicMaterial color="#ffffff" wireframe />
-        </mesh>
-        
-        {/* Interior cockpit structure */}
-        <mesh position={[0, 0, 0]}>
-          <boxGeometry args={[2.8, 1.5, 2.8]} />
-          <meshBasicMaterial color="#ffffff" wireframe />
-        </mesh>
-        
-        {/* Control panel */}
-        <mesh position={[1.2, 0.2, 0]}>
-          <boxGeometry args={[0.1, 0.8, 1.5]} />
-          <meshBasicMaterial color="#ffffff" wireframe />
-        </mesh>
-        
-        {/* Capsule grid lines */}
-        <mesh position={[0, 1, 0]}>
-          <torusGeometry args={[1.8, 0.02, 8, 16]} />
-          <meshBasicMaterial color="#ffffff" wireframe />
-        </mesh>
-        <mesh position={[0, 0, 0]}>
-          <torusGeometry args={[1.8, 0.02, 8, 16]} />
-          <meshBasicMaterial color="#ffffff" wireframe />
-        </mesh>
-        <mesh position={[0, -1, 0]}>
-          <torusGeometry args={[1.8, 0.02, 8, 16]} />
-          <meshBasicMaterial color="#ffffff" wireframe />
-        </mesh>
-      </group>
+        {/* Main Simulator Capsule */}
+        <group ref={capsuleRef} position={[0, 4, 0]}>
+          {/* Main capsule body - more angular, professional design */}
+          <mesh>
+            <boxGeometry args={[3.6, 2.4, 4.8]} />
+            <meshBasicMaterial 
+              color="#ffffff" 
+              wireframe 
+              transparent 
+              opacity={0.9} 
+            />
+          </mesh>
+          
+          {/* Front nose section */}
+          <mesh position={[2.2, 0, 0]}>
+            <coneGeometry args={[1.2, 1.6, 8]} />
+            <meshBasicMaterial color="#ffffff" wireframe />
+          </mesh>
+          
+          {/* Cockpit window sections */}
+          <mesh position={[1.8, 0.8, 0]}>
+            <boxGeometry args={[1.4, 0.8, 3.2]} />
+            <meshBasicMaterial color="#ffffff" wireframe />
+          </mesh>
+          
+          {/* Side windows */}
+          <mesh position={[0.5, 0.5, 2.2]}>
+            <boxGeometry args={[2, 1, 0.1]} />
+            <meshBasicMaterial color="#ffffff" wireframe />
+          </mesh>
+          <mesh position={[0.5, 0.5, -2.2]}>
+            <boxGeometry args={[2, 1, 0.1]} />
+            <meshBasicMaterial color="#ffffff" wireframe />
+          </mesh>
+          
+          {/* Door frame */}
+          <mesh position={[-1.5, -0.5, 2.3]}>
+            <boxGeometry args={[0.8, 1.8, 0.1]} />
+            <meshBasicMaterial color="#ffffff" wireframe />
+          </mesh>
+          
+          {/* Grid pattern on capsule sides */}
+          {/* Vertical grid lines */}
+          {Array.from({ length: 8 }).map((_, i) => (
+            <mesh key={`vertical-${i}`} position={[-1.5 + i * 0.4, 0, 2.35]}>
+              <boxGeometry args={[0.02, 2.4, 0.02]} />
+              <meshBasicMaterial color="#ffffff" wireframe />
+            </mesh>
+          ))}
+          
+          {/* Horizontal grid lines */}
+          {Array.from({ length: 6 }).map((_, i) => (
+            <mesh key={`horizontal-${i}`} position={[0, -1.2 + i * 0.4, 2.35]}>
+              <boxGeometry args={[3.6, 0.02, 0.02]} />
+              <meshBasicMaterial color="#ffffff" wireframe />
+            </mesh>
+          ))}
+          
+          {/* "60" Text marking */}
+          <group position={[0, -0.3, 2.4]}>
+            {/* "6" */}
+            <mesh position={[-0.3, 0, 0]}>
+              <torusGeometry args={[0.25, 0.05, 8, 16, Math.PI]} />
+              <meshBasicMaterial color="#ffffff" wireframe />
+            </mesh>
+            <mesh position={[-0.3, 0.15, 0]} rotation={[0, 0, Math.PI / 2]}>
+              <cylinderGeometry args={[0.05, 0.05, 0.3]} />
+              <meshBasicMaterial color="#ffffff" wireframe />
+            </mesh>
+            <mesh position={[-0.45, 0, 0]} rotation={[0, 0, Math.PI / 2]}>
+              <cylinderGeometry args={[0.05, 0.05, 0.5]} />
+              <meshBasicMaterial color="#ffffff" wireframe />
+            </mesh>
+            
+            {/* "0" */}
+            <mesh position={[0.3, 0, 0]}>
+              <torusGeometry args={[0.25, 0.05, 8, 16]} />
+              <meshBasicMaterial color="#ffffff" wireframe />
+            </mesh>
+          </group>
+          
+          {/* Interior structure hints */}
+          <mesh position={[0, 0, 0]}>
+            <boxGeometry args={[3.2, 2, 4.4]} />
+            <meshBasicMaterial color="#ffffff" wireframe />
+          </mesh>
+          
+          {/* Control panels */}
+          <mesh position={[1.4, -0.2, 0]}>
+            <boxGeometry args={[0.1, 1.2, 2.8]} />
+            <meshBasicMaterial color="#ffffff" wireframe />
+          </mesh>
+        </group>
     </group>
   );
 };

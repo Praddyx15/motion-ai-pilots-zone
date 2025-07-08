@@ -11,7 +11,7 @@ const SimulationSection = () => {
           </h2>
           
           <p className="body-text text-gray-300 fade-in text-lg leading-relaxed">
-            Immerse yourself in our advanced simulation programs, offering a realistic and immersive training environment. Practice various flight scenarios, hone your decision-making skills, and prepare for diverse flying conditions in a safe and controlled setting.
+            Immerse yourself in our AI-powered simulation programs featuring intelligent instructors, dynamic scenario generation, and performance analytics. Practice various flight scenarios including weather conditions, system failures, and emergency situations in a safe, controlled environment with real-time feedback and personalized learning.
           </p>
         </div>
       </div>

@@ -11,7 +11,7 @@ const SimulatorsSection = () => {
           </h2>
           
           <p className="body-text text-gray-300 fade-in text-lg leading-relaxed">
-            Our Full-Flight Simulators are designed to offer an unparalleled training experience. They replicate real-life flying conditions with high fidelity, providing pilots with a comprehensive and immersive training environment.
+            Our AI-powered Full-Flight Simulators feature Mixed Reality Head-Mounted Displays, real-time rendering, advanced tracking systems, and 6D full motion mechanics. They replicate real-life flying conditions with high fidelity, providing pilots with comprehensive training for commercial aviation, defense sector, and rotary wing operations.
           </p>
         </div>
       </div>

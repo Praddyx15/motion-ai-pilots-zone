@@ -11,7 +11,7 @@ const TrainingSection = () => {
           </h2>
           
           <p className="body-text text-gray-300 fade-in text-lg leading-relaxed">
-            At Sixty Motion, we are dedicated to advancing the field of aviation training with our cutting-edge full-flight simulators. Our simulators provide unparalleled realism and precision, ensuring pilots are fully prepared for the challenges of real-world flying.
+            At Sixty Motion System Pvt Ltd, we are dedicated to advancing the field of aviation training with our cutting-edge AI-powered full-flight simulators. Our simulators provide unparalleled realism and precision with intelligent instructors, dynamic scenario generation, and predictive maintenance, ensuring pilots are fully prepared for real-world challenges.
           </p>
         </div>
       </div>

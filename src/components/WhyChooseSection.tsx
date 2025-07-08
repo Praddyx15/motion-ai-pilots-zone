@@ -15,7 +15,7 @@ const WhyChooseSection = () => {
           </h3>
           
           <p className="body-text text-gray-300 fade-in text-lg leading-relaxed">
-            Welcome to Sixty Motion, your trusted partner in the future of aviation training. We are a pioneering startup dedicated to manufacturing state-of-the-art Full-Flight Simulators infused with AI technology. Our simulators are designed to revolutionize pilot training and enhance aviation safety, setting new standards in the industry.
+            Welcome to Sixty Motion System Pvt Ltd, your trusted partner in the future of aviation training. We are a pioneering Indian startup that has developed the world's first AI-powered Full Flight Simulator. Our indigenous technology, designed in India for the world, revolutionizes pilot training with advanced AI integration, mixed reality systems, and comprehensive defense capabilities.
           </p>
         </div>
       </div>

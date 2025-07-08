@@ -24,7 +24,7 @@ const JoinTeamSection = () => {
           </h3>
           
           <p className="body-text text-gray-300 mb-8 fade-in text-lg leading-relaxed max-w-4xl mx-auto">
-            Explore our current job openings and take the first step towards a rewarding career with Sixty Motion.
+            Explore our current job openings and take the first step towards a rewarding career with Sixty Motion System Pvt Ltd in developing world's first AI-powered flight simulators.
           </p>
           
           <div className="glass-panel p-8 max-w-4xl mx-auto mb-8 fade-in">
@@ -35,7 +35,7 @@ const JoinTeamSection = () => {
               Location: Gurugram
             </p>
             <p className="body-text text-gray-300 mb-8 leading-relaxed">
-              As we continue to grow, we are looking to expand our team with passionate, driven, and talented individuals who are excited about shaping the future of aviation training with the following expertise:
+              As we continue to grow, we are looking to expand our team with passionate, driven, and talented individuals who are excited about developing AI/ML systems, simulation software, mixed reality applications, and scalable system architecture for aviation training:
             </p>
             
             <div className="grid md:grid-cols-3 lg:grid-cols-5 gap-4">
