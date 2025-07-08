@@ -5,58 +5,102 @@ import { OrbitControls } from '@react-three/drei';
 import * as THREE from 'three';
 
 const SimulatorCapsule = () => {
-  const capsuleRef = useRef<THREE.Group>(null);
+  const groupRef = useRef<THREE.Group>(null);
   const legsRef = useRef<THREE.Group>(null);
+  const capsuleRef = useRef<THREE.Group>(null);
   
   useFrame((state) => {
-    if (capsuleRef.current) {
-      capsuleRef.current.rotation.y += 0.005;
+    if (groupRef.current) {
+      groupRef.current.rotation.y += 0.003;
     }
     if (legsRef.current) {
+      // Subtle breathing motion for legs
       legsRef.current.children.forEach((leg, index) => {
-        leg.rotation.z = Math.sin(state.clock.elapsedTime + index) * 0.1;
+        leg.rotation.z = Math.sin(state.clock.elapsedTime * 0.5 + index) * 0.05;
       });
     }
   });
 
-  // Create 6DOF motion base legs
-  const createLeg = (angle: number, index: number) => {
-    const x = Math.cos(angle) * 3;
-    const z = Math.sin(angle) * 3;
+  // Create 6DOF motion platform legs
+  const createMotionLeg = (angle: number, index: number) => {
+    const baseRadius = 3.5;
+    const topRadius = 2.2;
+    const legHeight = 3;
+    
+    const baseX = Math.cos(angle) * baseRadius;
+    const baseZ = Math.sin(angle) * baseRadius;
+    const topX = Math.cos(angle) * topRadius;
+    const topZ = Math.sin(angle) * topRadius;
     
     return (
-      <group key={index} position={[x, -2, z]}>
-        {/* Lower leg */}
-        <mesh position={[0, -1, 0]}>
-          <cylinderGeometry args={[0.1, 0.15, 2]} />
-          <meshStandardMaterial color="#ffffff" wireframe />
+      <group key={index}>
+        {/* Lower leg segment */}
+        <mesh position={[baseX, -1.5, baseZ]}>
+          <cylinderGeometry args={[0.08, 0.12, legHeight]} />
+          <meshBasicMaterial color="#ffffff" wireframe />
         </mesh>
-        {/* Upper leg */}
-        <mesh position={[0, 0.5, 0]}>
-          <cylinderGeometry args={[0.08, 0.1, 1]} />
-          <meshStandardMaterial color="#ffffff" wireframe />
+        
+        {/* Upper leg segment */}
+        <mesh 
+          position={[(baseX + topX) / 2, 0.5, (baseZ + topZ) / 2]}
+          rotation={[0, 0, Math.atan2(topZ - baseZ, topX - baseX) * 0.1]}
+        >
+          <cylinderGeometry args={[0.1, 0.08, 2]} />
+          <meshBasicMaterial color="#ffffff" wireframe />
         </mesh>
-        {/* Joint */}
-        <mesh position={[0, 1, 0]}>
-          <sphereGeometry args={[0.2]} />
-          <meshStandardMaterial color="#ffffff" wireframe />
+        
+        {/* Bottom joint */}
+        <mesh position={[baseX, -3, baseZ]}>
+          <sphereGeometry args={[0.15]} />
+          <meshBasicMaterial color="#ffffff" wireframe />
+        </mesh>
+        
+        {/* Top joint */}
+        <mesh position={[topX, 1.8, topZ]}>
+          <sphereGeometry args={[0.12]} />
+          <meshBasicMaterial color="#ffffff" wireframe />
+        </mesh>
+        
+        {/* Ground footpad */}
+        <mesh position={[baseX, -3.5, baseZ]}>
+          <cylinderGeometry args={[0.4, 0.4, 0.2]} />
+          <meshBasicMaterial color="#ffffff" wireframe />
         </mesh>
       </group>
     );
   };
 
+  // Create 6 legs in hexagonal pattern
   const legs = [];
   for (let i = 0; i < 6; i++) {
     const angle = (i / 6) * Math.PI * 2;
-    legs.push(createLeg(angle, i));
+    legs.push(createMotionLeg(angle, i));
   }
 
   return (
-    <group>
+    <group ref={groupRef}>
       {/* Motion Base Platform */}
-      <mesh position={[0, 1, 0]}>
-        <cylinderGeometry args={[2.5, 2.5, 0.3]} />
-        <meshStandardMaterial color="#ffffff" wireframe />
+      <mesh position={[0, 1.8, 0]}>
+        <cylinderGeometry args={[2.2, 2.2, 0.2]} />
+        <meshBasicMaterial color="#ffffff" wireframe />
+      </mesh>
+      
+      {/* Platform support rods */}
+      <mesh position={[1.5, 2.5, 0]}>
+        <cylinderGeometry args={[0.05, 0.05, 1.4]} />
+        <meshBasicMaterial color="#ffffff" wireframe />
+      </mesh>
+      <mesh position={[-1.5, 2.5, 0]}>
+        <cylinderGeometry args={[0.05, 0.05, 1.4]} />
+        <meshBasicMaterial color="#ffffff" wireframe />
+      </mesh>
+      <mesh position={[0, 2.5, 1.5]}>
+        <cylinderGeometry args={[0.05, 0.05, 1.4]} />
+        <meshBasicMaterial color="#ffffff" wireframe />
+      </mesh>
+      <mesh position={[0, 2.5, -1.5]}>
+        <cylinderGeometry args={[0.05, 0.05, 1.4]} />
+        <meshBasicMaterial color="#ffffff" wireframe />
       </mesh>
       
       {/* 6DOF Legs */}
@@ -64,22 +108,55 @@ const SimulatorCapsule = () => {
         {legs}
       </group>
       
-      {/* Simulator Capsule */}
-      <group ref={capsuleRef} position={[0, 2, 0]}>
+      {/* Main Simulator Capsule */}
+      <group ref={capsuleRef} position={[0, 4, 0]}>
+        {/* Main capsule body */}
         <mesh>
-          <capsuleGeometry args={[1.5, 2, 4, 8]} />
-          <meshStandardMaterial 
+          <capsuleGeometry args={[1.8, 3, 8, 16]} />
+          <meshBasicMaterial 
             color="#ffffff" 
             wireframe 
             transparent 
-            opacity={0.8} 
+            opacity={0.9} 
           />
         </mesh>
         
-        {/* Cockpit Interior */}
-        <mesh position={[0, 0.5, 0]}>
-          <boxGeometry args={[1.2, 0.8, 1.2]} />
-          <meshStandardMaterial color="#ffffff" wireframe />
+        {/* Cockpit window frame */}
+        <mesh position={[1.6, 0.5, 0]} rotation={[0, 0, Math.PI / 2]}>
+          <boxGeometry args={[1.2, 0.1, 2]} />
+          <meshBasicMaterial color="#ffffff" wireframe />
+        </mesh>
+        
+        {/* Door frame */}
+        <mesh position={[0, -0.5, 1.7]}>
+          <boxGeometry args={[1, 2, 0.1]} />
+          <meshBasicMaterial color="#ffffff" wireframe />
+        </mesh>
+        
+        {/* Interior cockpit structure */}
+        <mesh position={[0, 0, 0]}>
+          <boxGeometry args={[2.8, 1.5, 2.8]} />
+          <meshBasicMaterial color="#ffffff" wireframe />
+        </mesh>
+        
+        {/* Control panel */}
+        <mesh position={[1.2, 0.2, 0]}>
+          <boxGeometry args={[0.1, 0.8, 1.5]} />
+          <meshBasicMaterial color="#ffffff" wireframe />
+        </mesh>
+        
+        {/* Capsule grid lines */}
+        <mesh position={[0, 1, 0]}>
+          <torusGeometry args={[1.8, 0.02, 8, 16]} />
+          <meshBasicMaterial color="#ffffff" wireframe />
+        </mesh>
+        <mesh position={[0, 0, 0]}>
+          <torusGeometry args={[1.8, 0.02, 8, 16]} />
+          <meshBasicMaterial color="#ffffff" wireframe />
+        </mesh>
+        <mesh position={[0, -1, 0]}>
+          <torusGeometry args={[1.8, 0.02, 8, 16]} />
+          <meshBasicMaterial color="#ffffff" wireframe />
         </mesh>
       </group>
     </group>
@@ -88,7 +165,7 @@ const SimulatorCapsule = () => {
 
 const SimulatorSection = () => {
   return (
-    <section className="section-padding bg-gradient-to-b from-[#001f1f] to-[#004443] relative">
+    <section className="section-padding bg-black relative overflow-hidden">
       <div className="container-width">
         <div className="text-center mb-16">
           <h2 className="heading-secondary mb-6 text-white fade-in">
@@ -101,23 +178,37 @@ const SimulatorSection = () => {
         </div>
 
         {/* 3D Simulator Display */}
-        <div className="h-96 mb-16 glass-panel relative overflow-hidden">
+        <div className="h-[600px] mb-16 relative overflow-hidden rounded-lg border border-gray-800">
+          {/* Subtle scanlines effect */}
+          <div className="absolute inset-0 opacity-10 pointer-events-none">
+            <div className="h-full w-full bg-gradient-to-b from-transparent via-white to-transparent bg-repeat" 
+                 style={{ backgroundSize: '100% 4px', animation: 'scanlines 3s linear infinite' }}>
+            </div>
+          </div>
+          
           <Suspense fallback={
-            <div className="flex items-center justify-center h-full">
-              <div className="animate-pulse text-accent-teal">Loading 3D Model...</div>
+            <div className="flex items-center justify-center h-full bg-black">
+              <div className="animate-pulse text-accent-teal text-lg">Loading 3D Model...</div>
             </div>
           }>
-            <Canvas camera={{ position: [8, 6, 8], fov: 45 }}>
-              <ambientLight intensity={0.4} />
-              <pointLight position={[10, 10, 10]} intensity={0.8} color="#ffffff" />
-              <pointLight position={[-10, -10, -10]} intensity={0.4} color="#ffffff" />
+            <Canvas 
+              camera={{ position: [12, 8, 12], fov: 50 }}
+              style={{ background: '#000000' }}
+            >
+              <ambientLight intensity={0.3} />
+              <pointLight position={[15, 15, 15]} intensity={0.6} color="#ffffff" />
+              <pointLight position={[-10, 10, -10]} intensity={0.3} color="#ffffff" />
               <SimulatorCapsule />
               <OrbitControls 
                 enablePan={false} 
-                minDistance={5} 
-                maxDistance={15}
+                minDistance={8} 
+                maxDistance={25}
                 autoRotate
-                autoRotateSpeed={1}
+                autoRotateSpeed={0.8}
+                enableDamping
+                dampingFactor={0.05}
+                maxPolarAngle={Math.PI * 0.75}
+                minPolarAngle={Math.PI * 0.15}
               />
             </Canvas>
           </Suspense>
