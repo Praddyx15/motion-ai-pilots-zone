@@ -1,10 +1,15 @@
 
 import React, { useEffect } from 'react';
 import Hero3D from '../components/Hero3D';
-import SimulatorSection from '../components/SimulatorSection';
-import CapabilitiesSection from '../components/CapabilitiesSection';
-import AboutSection from '../components/AboutSection';
-import Footer from '../components/Footer';
+import VisionSection from '../components/VisionSection';
+import WhatWeDoSection from '../components/WhatWeDoSection';
+import TrainingSection from '../components/TrainingSection';
+import SimulatorsSection from '../components/SimulatorsSection';
+import SimulationSection from '../components/SimulationSection';
+import WhyChooseSection from '../components/WhyChooseSection';
+import CollaborationSection from '../components/CollaborationSection';
+import JoinTeamSection from '../components/JoinTeamSection';
+import ContactSection from '../components/ContactSection';
 
 const Index = () => {
   useEffect(() => {
@@ -21,7 +26,6 @@ const Index = () => {
       { threshold: 0.1, rootMargin: '0px 0px -50px 0px' }
     );
 
-    // Add a small delay to ensure DOM is ready
     const timer = setTimeout(() => {
       const animatedElements = document.querySelectorAll(
         '.fade-in, .slide-in-left, .slide-in-right, .scale-in'
@@ -38,20 +42,16 @@ const Index = () => {
 
   return (
     <div className="min-h-screen">
-      {/* Hero Section */}
       <Hero3D />
-
-      {/* 3D Interactive Simulator Section */}
-      <SimulatorSection />
-
-      {/* Capabilities Section */}
-      <CapabilitiesSection />
-
-      {/* About & Mission Section */}
-      <AboutSection />
-
-      {/* Footer */}
-      <Footer />
+      <VisionSection />
+      <WhatWeDoSection />
+      <TrainingSection />
+      <SimulatorsSection />
+      <SimulationSection />
+      <WhyChooseSection />
+      <CollaborationSection />
+      <JoinTeamSection />
+      <ContactSection />
     </div>
   );
 };

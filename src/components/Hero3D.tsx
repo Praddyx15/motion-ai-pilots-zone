@@ -50,10 +50,8 @@ const FloatingElements = () => {
 const Hero3D = () => {
   return (
     <section className="min-h-screen flex items-center justify-center relative overflow-hidden scanlines">
-      {/* Tech Grid Background */}
       <div className="absolute inset-0 tech-grid opacity-10"></div>
       
-      {/* 3D Background Elements */}
       <div className="absolute inset-0 z-0">
         <Suspense fallback={null}>
           <Canvas camera={{ position: [0, 0, 10], fov: 45 }}>
@@ -64,17 +62,16 @@ const Hero3D = () => {
         </Suspense>
       </div>
 
-      {/* Content */}
       <div className="container-width relative z-10 text-center">
         <div className="fade-in">
           <h1 className="heading-primary mb-6 text-white">
-            Immersive Precision.
+            World's First AI-Powered
             <br />
-            <span className="text-accent-teal">Engineered for Flight.</span>
+            <span className="text-accent-teal">Full Flight Simulator</span>
           </h1>
           
-          <p className="body-text mb-8 max-w-2xl mx-auto text-gray-300">
-            Experience the future of simulator technology with cutting-edge motion systems and AI-powered training analytics.
+          <p className="body-text mb-8 max-w-2xl mx-auto text-gray-300 text-xl">
+            Designed in India, crafted for the world
           </p>
           
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
@@ -88,7 +85,6 @@ const Hero3D = () => {
         </div>
       </div>
 
-      {/* Gradient Bottom Border */}
       <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-accent-teal to-transparent"></div>
     </section>
   );
