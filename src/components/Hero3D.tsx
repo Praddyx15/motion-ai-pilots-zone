@@ -9,7 +9,10 @@ const TechGrid = ({ position, size }: { position: [number, number, number], size
   useFrame((state) => {
     if (meshRef.current) {
       meshRef.current.rotation.z = state.clock.elapsedTime * 0.1;
-      meshRef.current.material.opacity = 0.3 + Math.sin(state.clock.elapsedTime) * 0.1;
+      const material = meshRef.current.material as THREE.MeshBasicMaterial;
+      if (material && !Array.isArray(material)) {
+        material.opacity = 0.3 + Math.sin(state.clock.elapsedTime) * 0.1;
+      }
     }
   });
 
