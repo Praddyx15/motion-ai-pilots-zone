@@ -6,6 +6,7 @@ import WhatWeDoSection from '../components/WhatWeDoSection';
 import TrainingSection from '../components/TrainingSection';
 import SimulatorsSection from '../components/SimulatorsSection';
 import SimulationSection from '../components/SimulationSection';
+import SimulatorSection from '../components/SimulatorSection';
 import WhyChooseSection from '../components/WhyChooseSection';
 import CollaborationSection from '../components/CollaborationSection';
 import JoinTeamSection from '../components/JoinTeamSection';
@@ -48,6 +49,7 @@ const Index = () => {
       <TrainingSection />
       <SimulatorsSection />
       <SimulationSection />
+      <SimulatorSection />
       <WhyChooseSection />
       <CollaborationSection />
       <JoinTeamSection />

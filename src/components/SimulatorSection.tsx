@@ -29,17 +29,17 @@ const SimulatorCapsule = () => {
         {/* Lower leg */}
         <mesh position={[0, -1, 0]}>
           <cylinderGeometry args={[0.1, 0.15, 2]} />
-          <meshStandardMaterial color="#2e9896" wireframe />
+          <meshStandardMaterial color="#ffffff" wireframe />
         </mesh>
         {/* Upper leg */}
         <mesh position={[0, 0.5, 0]}>
           <cylinderGeometry args={[0.08, 0.1, 1]} />
-          <meshStandardMaterial color="#004443" wireframe />
+          <meshStandardMaterial color="#ffffff" wireframe />
         </mesh>
         {/* Joint */}
         <mesh position={[0, 1, 0]}>
           <sphereGeometry args={[0.2]} />
-          <meshStandardMaterial color="#2e9896" wireframe />
+          <meshStandardMaterial color="#ffffff" wireframe />
         </mesh>
       </group>
     );
@@ -56,7 +56,7 @@ const SimulatorCapsule = () => {
       {/* Motion Base Platform */}
       <mesh position={[0, 1, 0]}>
         <cylinderGeometry args={[2.5, 2.5, 0.3]} />
-        <meshStandardMaterial color="#004443" wireframe />
+        <meshStandardMaterial color="#ffffff" wireframe />
       </mesh>
       
       {/* 6DOF Legs */}
@@ -69,7 +69,7 @@ const SimulatorCapsule = () => {
         <mesh>
           <capsuleGeometry args={[1.5, 2, 4, 8]} />
           <meshStandardMaterial 
-            color="#2e9896" 
+            color="#ffffff" 
             wireframe 
             transparent 
             opacity={0.8} 
@@ -79,7 +79,7 @@ const SimulatorCapsule = () => {
         {/* Cockpit Interior */}
         <mesh position={[0, 0.5, 0]}>
           <boxGeometry args={[1.2, 0.8, 1.2]} />
-          <meshStandardMaterial color="#004443" wireframe />
+          <meshStandardMaterial color="#ffffff" wireframe />
         </mesh>
       </group>
     </group>
@@ -109,8 +109,8 @@ const SimulatorSection = () => {
           }>
             <Canvas camera={{ position: [8, 6, 8], fov: 45 }}>
               <ambientLight intensity={0.4} />
-              <pointLight position={[10, 10, 10]} intensity={0.8} color="#2e9896" />
-              <pointLight position={[-10, -10, -10]} intensity={0.4} color="#004443" />
+              <pointLight position={[10, 10, 10]} intensity={0.8} color="#ffffff" />
+              <pointLight position={[-10, -10, -10]} intensity={0.4} color="#ffffff" />
               <SimulatorCapsule />
               <OrbitControls 
                 enablePan={false} 
