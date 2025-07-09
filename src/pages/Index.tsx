@@ -3,6 +3,7 @@ import React, { useEffect } from 'react';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 
+import AviationAnimatedBackground from '../components/AviationAnimatedBackground';
 import Navbar from '../components/Navbar';
 import HeroSection from '../components/HeroSection';
 import VisionSection from '../components/VisionSection';
@@ -24,12 +25,13 @@ const Index = () => {
   }, []);
 
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen relative">
+      <AviationAnimatedBackground />
       <Navbar />
       <HeroSection />
       
       {/* Vision section with integrated 3D simulator */}
-      <section id="vision" className="section-padding">
+      <section id="vision" className="section-padding relative z-10">
         <div className="container-width">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             <div data-aos="slide-right" data-aos-duration="800">
@@ -53,11 +55,13 @@ const Index = () => {
         </div>
       </section>
       
-      <WhatWeDoSection />
-      <WhyChooseSection />
-      <CollaborationSection />
-      <JoinTeamSection />
-      <ContactSection />
+      <div className="relative z-10">
+        <WhatWeDoSection />
+        <WhyChooseSection />
+        <CollaborationSection />
+        <JoinTeamSection />
+        <ContactSection />
+      </div>
     </div>
   );
 };
