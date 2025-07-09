@@ -4,63 +4,55 @@ import { Phone, Mail, MapPin } from 'lucide-react';
 
 const ContactSection = () => {
   return (
-    <footer className="bg-gradient-to-r from-[#004443] to-[#2e9896] relative">
-      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#2e9896] to-transparent"></div>
+    <section id="contact" className="section-padding relative">
+      {/* Subtle glow around section */}
+      <div className="absolute inset-0 bg-gradient-to-br from-[#2e9896]/10 via-transparent to-[#004443]/10 rounded-3xl"></div>
       
-      <div className="container-width py-16">
-        <div className="text-center">
-          <h2 className="heading-secondary text-white mb-12">
+      <div className="container-width relative z-10">
+        <div className="text-center mb-12">
+          <h2 className="heading-secondary text-white mb-12" data-aos="fade-up">
             Get in Touch
           </h2>
           
-          <div className="glass-panel p-8 max-w-2xl mx-auto mb-12">
-            <h3 className="heading-tertiary text-white mb-6">
-              Sixty Motion System Pvt Ltd
+          <div className="glass-panel p-8 max-w-2xl mx-auto" data-aos="zoom-in" data-aos-delay="200">
+            <h3 className="heading-tertiary text-white mb-8 font-montserrat">
+              Sixty Motion
             </h3>
             
-            <div className="space-y-4 text-left">
-              <div className="flex items-start space-x-4">
-                <MapPin className="w-5 h-5 text-[#2e9896] mt-1 flex-shrink-0" />
+            <div className="space-y-6 text-left">
+              <div className="flex items-start space-x-4" data-aos="slide-right" data-aos-delay="400">
+                <MapPin className="w-6 h-6 text-accent-teal mt-1 flex-shrink-0" />
                 <div>
-                  <p className="body-small text-gray-200">
+                  <p className="body-text text-[#e0fdfa] leading-relaxed">
                     2nd Floor, Property No. 44, Above Madame Tussauds, Regal Building, Connaught Place, New Delhi – 110001
-                  </p>
-                  <p className="body-small text-gray-200 mt-1">
-                    Alternative: DLF Cyberhub, Tower 10 A, Gurugram, 122022
                   </p>
                 </div>
               </div>
               
-              <div className="flex items-center space-x-4">
-                <Phone className="w-5 h-5 text-[#2e9896]" />
-                <p className="body-small text-gray-200">
+              <div className="flex items-center space-x-4" data-aos="slide-right" data-aos-delay="500">
+                <Phone className="w-6 h-6 text-accent-teal flex-shrink-0" />
+                <p className="body-text text-[#e0fdfa] text-lg">
                   +91 99991 59469
                 </p>
               </div>
               
-              <div className="flex items-center space-x-4">
-                <Mail className="w-5 h-5 text-[#2e9896]" />
-                <div>
-                  <p className="body-small text-gray-200">
-                    info@sixtymotion.com
-                  </p>
-                  <p className="body-small text-gray-200">
-                    www.sixtymotion.com
-                  </p>
-                </div>
+              <div className="flex items-center space-x-4" data-aos="slide-right" data-aos-delay="600">
+                <Mail className="w-6 h-6 text-accent-teal flex-shrink-0" />
+                <p className="body-text text-[#e0fdfa] text-lg">
+                  info@sixtymotion.com
+                </p>
               </div>
             </div>
           </div>
         </div>
         
-        <div className="border-t border-white/20 pt-8 text-center">
-          <p className="body-small text-gray-200">
-            © Copyright 2024. All Rights Reserved.<br />
-            Sixty Motion System Pvt Ltd
+        <div className="text-center pt-8 border-t border-white/20" data-aos="fade-up" data-aos-delay="800">
+          <p className="body-small text-[#e0fdfa]">
+            © Copyright 2024. All Rights Reserved.
           </p>
         </div>
       </div>
-    </footer>
+    </section>
   );
 };
 

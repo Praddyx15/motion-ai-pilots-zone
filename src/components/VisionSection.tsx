@@ -3,20 +3,29 @@ import React from 'react';
 
 const VisionSection = () => {
   return (
-    <section className="section-padding relative">
+    <section id="vision" className="section-padding">
       <div className="container-width">
-        <div className="text-center max-w-4xl mx-auto">
-          <h2 className="heading-secondary mb-8 text-white fade-in">
-            <span className="text-accent-teal">OUR VISION</span>
-          </h2>
+        <div className="grid lg:grid-cols-2 gap-16 items-center">
+          <div data-aos="slide-right" data-aos-duration="800">
+            <h2 className="heading-secondary mb-8 text-white">
+              <span className="text-accent-teal">OUR VISION</span>
+            </h2>
+            
+            <p className="body-text text-[#e0fdfa] mb-6 text-xl leading-relaxed">
+              To lead the world in creating cutting-edge simulation technologies that revolutionize training, safety, and performance across industries.
+            </p>
+            
+            <p className="body-text text-accent-teal text-lg font-medium">
+              Join us on this incredible journey as we pave the way for a new era of AI-powered Full Flight Simulators.
+            </p>
+          </div>
           
-          <p className="body-text text-gray-300 mb-8 fade-in text-lg leading-relaxed">
-            To lead the world in creating cutting-edge simulation technologies that revolutionize training, safety, and performance across industries.
-          </p>
-          
-          <p className="body-text text-accent-teal fade-in text-lg font-medium">
-            Join us on this incredible journey as we pave the way for a new era of AI-powered Full Flight Simulators.
-          </p>
+          {/* 3D Simulator will be placed here by SimulatorSection component */}
+          <div data-aos="fade-left" data-aos-duration="1000" data-aos-delay="200">
+            <div className="aspect-square bg-black/30 rounded-lg border border-accent-teal/30 flex items-center justify-center">
+              <p className="text-accent-teal">Interactive 3D Simulator</p>
+            </div>
+          </div>
         </div>
       </div>
     </section>

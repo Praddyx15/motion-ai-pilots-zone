@@ -1,12 +1,13 @@
 
 import React, { useEffect } from 'react';
-import Hero3D from '../components/Hero3D';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
+
+import Navbar from '../components/Navbar';
+import HeroSection from '../components/HeroSection';
 import VisionSection from '../components/VisionSection';
+import Interactive3DSimulator from '../components/Interactive3DSimulator';
 import WhatWeDoSection from '../components/WhatWeDoSection';
-import TrainingSection from '../components/TrainingSection';
-import SimulatorsSection from '../components/SimulatorsSection';
-import SimulationSection from '../components/SimulationSection';
-import SimulatorSection from '../components/SimulatorSection';
 import WhyChooseSection from '../components/WhyChooseSection';
 import CollaborationSection from '../components/CollaborationSection';
 import JoinTeamSection from '../components/JoinTeamSection';
@@ -14,42 +15,45 @@ import ContactSection from '../components/ContactSection';
 
 const Index = () => {
   useEffect(() => {
-    console.log('Index component mounted');
-    
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('visible');
-          }
-        });
-      },
-      { threshold: 0.1, rootMargin: '0px 0px -50px 0px' }
-    );
-
-    const timer = setTimeout(() => {
-      const animatedElements = document.querySelectorAll(
-        '.fade-in, .slide-in-left, .slide-in-right, .scale-in'
-      );
-      console.log('Found animated elements:', animatedElements.length);
-      animatedElements.forEach((el) => observer.observe(el));
-    }, 100);
-
-    return () => {
-      observer.disconnect();
-      clearTimeout(timer);
-    };
+    AOS.init({
+      duration: 1000,
+      once: true,
+      easing: 'ease-out-cubic',
+      offset: 100
+    });
   }, []);
 
   return (
     <div className="min-h-screen">
-      <Hero3D />
-      <VisionSection />
+      <Navbar />
+      <HeroSection />
+      
+      {/* Vision section with integrated 3D simulator */}
+      <section id="vision" className="section-padding">
+        <div className="container-width">
+          <div className="grid lg:grid-cols-2 gap-16 items-center">
+            <div data-aos="slide-right" data-aos-duration="800">
+              <h2 className="heading-secondary mb-8 text-white">
+                <span className="text-accent-teal">OUR VISION</span>
+              </h2>
+              
+              <p className="body-text text-[#e0fdfa] mb-6 text-xl leading-relaxed">
+                To lead the world in creating cutting-edge simulation technologies that revolutionize training, safety, and performance across industries.
+              </p>
+              
+              <p className="body-text text-accent-teal text-lg font-medium">
+                Join us on this incredible journey as we pave the way for a new era of AI-powered Full Flight Simulators.
+              </p>
+            </div>
+            
+            <div data-aos="fade-left" data-aos-duration="1000" data-aos-delay="200">
+              <Interactive3DSimulator />
+            </div>
+          </div>
+        </div>
+      </section>
+      
       <WhatWeDoSection />
-      <TrainingSection />
-      <SimulatorsSection />
-      <SimulationSection />
-      <SimulatorSection />
       <WhyChooseSection />
       <CollaborationSection />
       <JoinTeamSection />
