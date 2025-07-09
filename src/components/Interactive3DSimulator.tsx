@@ -152,39 +152,59 @@ const SimulatorModel = () => {
 
 const Interactive3DSimulator = () => {
   return (
-    <div className="h-[500px] w-full rounded-lg border border-accent-teal/30 overflow-hidden bg-black">
-      <Suspense fallback={
-        <div className="flex items-center justify-center h-full bg-black">
-          <div className="text-accent-teal">Loading 3D Model...</div>
+    <div className="relative">
+      <div className="h-[600px] lg:h-[700px] w-full rounded-2xl border-2 border-accent-teal/30 overflow-hidden bg-black shadow-2xl">
+        <Suspense fallback={
+          <div className="flex items-center justify-center h-full bg-black">
+            <div className="text-accent-teal animate-pulse text-lg">Loading 3D Model...</div>
+          </div>
+        }>
+          <Canvas 
+            camera={{ position: [12, 8, 12], fov: 45 }}
+            style={{ background: 'linear-gradient(135deg, #000000 0%, #001a1a 100%)' }}
+          >
+            <ambientLight intensity={0.3} />
+            <pointLight position={[15, 15, 15]} intensity={0.6} color="#ffffff" />
+            <pointLight position={[-8, 8, -8]} intensity={0.3} color="#2e9896" />
+            <pointLight position={[0, 20, 0]} intensity={0.2} color="#e0fdfa" />
+            <spotLight 
+              position={[20, 20, 10]} 
+              angle={0.3} 
+              penumbra={1} 
+              intensity={0.5} 
+              color="#ffffff"
+            />
+            
+            <SimulatorModel />
+            
+            <OrbitControls 
+              enablePan={false}
+              minDistance={8}
+              maxDistance={25}
+              autoRotate
+              autoRotateSpeed={0.8}
+              enableDamping
+              dampingFactor={0.08}
+              maxPolarAngle={Math.PI * 0.7}
+              minPolarAngle={Math.PI * 0.25}
+            />
+          </Canvas>
+        </Suspense>
+        
+        {/* Enhanced control indicators */}
+        <div className="absolute bottom-4 right-4 text-xs text-accent-teal/70 font-mono bg-black/50 px-3 py-2 rounded-lg backdrop-blur-sm">
+          <div>🖱️ Drag to rotate</div>
+          <div>🔍 Scroll to zoom</div>
         </div>
-      }>
-        <Canvas 
-          camera={{ position: [8, 6, 8], fov: 50 }}
-          style={{ background: '#000000' }}
-        >
-          <ambientLight intensity={0.2} />
-          <pointLight position={[10, 10, 10]} intensity={0.4} color="#ffffff" />
-          <pointLight position={[-5, 5, -5]} intensity={0.2} color="#2e9896" />
-          
-          <SimulatorModel />
-          
-          <OrbitControls 
-            enablePan={false}
-            minDistance={6}
-            maxDistance={20}
-            autoRotate
-            autoRotateSpeed={1}
-            enableDamping
-            dampingFactor={0.05}
-            maxPolarAngle={Math.PI * 0.75}
-            minPolarAngle={Math.PI * 0.2}
-          />
-        </Canvas>
-      </Suspense>
-      
-      <div className="absolute bottom-2 right-2 text-xs text-accent-teal/70">
-        Drag to rotate • Scroll to zoom
+        
+        {/* Performance indicator */}
+        <div className="absolute top-4 left-4 text-xs text-white/50 font-mono bg-black/50 px-2 py-1 rounded backdrop-blur-sm">
+          Real-time 3D Rendering
+        </div>
       </div>
+      
+      {/* Glow effect around the 3D container */}
+      <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-accent-teal/20 via-transparent to-accent-teal/20 blur-xl -z-10"></div>
     </div>
   );
 };

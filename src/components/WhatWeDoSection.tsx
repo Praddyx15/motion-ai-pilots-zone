@@ -30,24 +30,25 @@ const WhatWeDoSection = () => {
           </h2>
         </div>
 
-        <div className="max-w-2xl mx-auto space-y-12">
+        <div className="max-w-4xl mx-auto space-y-8 lg:space-y-12">
           {services.map((service, index) => (
             <div
               key={index}
-              className="flex items-start space-x-6 p-8 glass-panel hover-glow transition-all duration-500"
+              className="flex flex-col lg:flex-row items-start lg:items-center space-y-6 lg:space-y-0 lg:space-x-8 p-8 lg:p-12 glass-panel hover-glow transition-all duration-700 group"
               data-aos="slide-up"
-              data-aos-delay={index * 200}
+              data-aos-delay={index * 150}
+              data-aos-duration="800"
             >
-              <div className="w-16 h-16 bg-gradient-to-br from-[#2e9896] to-[#004443] rounded-lg flex items-center justify-center flex-shrink-0">
-                <service.icon className="w-8 h-8 text-white" />
+              <div className="w-20 h-20 lg:w-24 lg:h-24 bg-gradient-to-br from-[#2e9896] via-[#1a7a7a] to-[#004443] rounded-2xl flex items-center justify-center flex-shrink-0 shadow-2xl group-hover:shadow-[0_0_30px_rgba(46,152,150,0.4)] transition-all duration-700 group-hover:scale-110">
+                <service.icon className="w-10 h-10 lg:w-12 lg:h-12 text-white group-hover:text-[#e0fdfa] transition-colors duration-500" />
               </div>
               
-              <div>
-                <h3 className="heading-tertiary text-white mb-4 font-montserrat">
+              <div className="flex-1">
+                <h3 className="heading-tertiary text-white mb-6 font-montserrat group-hover:text-[#e0fdfa] transition-colors duration-500">
                   {service.title}
                 </h3>
                 
-                <p className="body-text text-[#e0fdfa] leading-relaxed">
+                <p className="body-text text-[#e0fdfa] leading-relaxed lg:leading-loose text-lg lg:text-xl group-hover:text-white transition-colors duration-500">
                   {service.description}
                 </p>
               </div>
