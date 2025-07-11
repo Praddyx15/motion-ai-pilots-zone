@@ -8,24 +8,24 @@
 @layer base {
   :root {
     --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    --foreground: 180 100% 13%;
     --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
+    --card-foreground: 180 100% 13%;
     --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
+    --popover-foreground: 180 100% 13%;
+    --primary: 180 100% 13%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 180 54% 37%;
+    --secondary-foreground: 0 0% 100%;
+    --muted: 0 0% 96%;
+    --muted-foreground: 180 100% 13%;
+    --accent: 180 54% 37%;
+    --accent-foreground: 0 0% 100%;
     --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 0 0% 90%;
+    --input: 0 0% 90%;
+    --ring: 180 54% 37%;
     --radius: 0.5rem;
 
     /* Custom Brand Colors */
@@ -41,8 +41,8 @@
   body {
     font-family: 'Poppins', sans-serif;
     line-height: 1.6;
-    background: linear-gradient(135deg, #004443 0%, #2e9896 100%);
-    color: white;
+    background: #ffffff;
+    color: hsl(var(--foreground));
     scroll-behavior: smooth;
     min-height: 100vh;
   }
@@ -51,19 +51,22 @@
   .heading-primary {
     font-family: 'Montserrat', sans-serif;
     @apply text-5xl md:text-7xl lg:text-8xl font-bold leading-tight tracking-tight uppercase;
-    text-shadow: 0 0 30px rgba(255,255,255,0.2), 0 0 60px rgba(46,152,150,0.3);
+    color: hsl(var(--foreground));
+    text-shadow: 0 0 30px rgba(46,152,150,0.2), 0 0 60px rgba(46,152,150,0.3);
   }
 
   .heading-secondary {
     font-family: 'Montserrat', sans-serif;
     @apply text-3xl md:text-5xl lg:text-6xl font-semibold leading-tight uppercase;
-    text-shadow: 0 0 20px rgba(255,255,255,0.1);
+    color: hsl(var(--foreground));
+    text-shadow: 0 0 20px rgba(46,152,150,0.1);
   }
 
   .heading-tertiary {
     font-family: 'Montserrat', sans-serif;
     @apply text-xl md:text-3xl lg:text-4xl font-medium leading-snug uppercase;
-    text-shadow: 0 0 15px rgba(255,255,255,0.1);
+    color: hsl(var(--foreground));
+    text-shadow: 0 0 15px rgba(46,152,150,0.1);
   }
 
   .body-text {

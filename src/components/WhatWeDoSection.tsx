@@ -25,8 +25,8 @@ const WhatWeDoSection = () => {
     <section id="what-we-do" className="section-padding">
       <div className="container-width">
         <div className="text-center mb-16">
-          <h2 className="heading-secondary mb-6 text-white" data-aos="fade-up">
-            <span className="text-accent-teal">What We Do</span>
+          <h2 className="heading-secondary mb-6" data-aos="fade-up">
+            <span className="text-accent">What We Do</span>
           </h2>
         </div>
 
@@ -44,11 +44,11 @@ const WhatWeDoSection = () => {
               </div>
               
               <div className="flex-1">
-                <h3 className="heading-tertiary text-white mb-6 font-montserrat group-hover:text-[#e0fdfa] transition-colors duration-500">
+                <h3 className="heading-tertiary mb-6 font-montserrat group-hover:text-accent transition-colors duration-500">
                   {service.title}
                 </h3>
                 
-                <p className="body-text text-[#e0fdfa] leading-relaxed lg:leading-loose text-lg lg:text-xl group-hover:text-white transition-colors duration-500">
+                <p className="body-text text-muted-foreground leading-relaxed lg:leading-loose text-lg lg:text-xl group-hover:text-foreground transition-colors duration-500">
                   {service.description}
                 </p>
               </div>

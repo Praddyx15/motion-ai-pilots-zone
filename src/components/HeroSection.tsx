@@ -27,26 +27,26 @@ const HeroSection = () => {
       <div className="text-center z-10 max-w-7xl mx-auto px-8 lg:px-16">
         <div className="space-y-8 lg:space-y-12">
           <h1 
-            className="heading-primary text-white leading-none"
+            className="heading-primary leading-none"
             data-aos="fade-up"
             data-aos-delay="300"
             data-aos-duration="1200"
           >
             World's First AI-Powered
             <br />
-            <span className="text-accent-teal bg-gradient-to-r from-[#2e9896] to-[#e0fdfa] bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-[#2e9896] to-[#004443] bg-clip-text text-transparent">
               Full Flight Simulator
             </span>
           </h1>
           
-          <div className="h-1 w-32 mx-auto bg-gradient-to-r from-transparent via-white to-transparent opacity-60"></div>
+          <div className="h-1 w-32 mx-auto bg-gradient-to-r from-transparent via-primary to-transparent opacity-60"></div>
           
           <p 
-            className="text-2xl md:text-4xl lg:text-5xl text-[#e0fdfa] font-light font-poppins"
+            className="text-2xl md:text-4xl lg:text-5xl text-accent font-light font-poppins"
             data-aos="slide-up"
             data-aos-delay="800"
             data-aos-duration="1000"
-            style={{ textShadow: '0 0 20px rgba(224,253,250,0.3)' }}
+            style={{ textShadow: '0 0 20px rgba(46,152,150,0.3)' }}
           >
             Designed in India, crafted for the world
           </p>
